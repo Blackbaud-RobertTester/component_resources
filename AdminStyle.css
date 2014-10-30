@@ -1564,7 +1564,7 @@ table.lc_Table {
 th.lc_Heading,
 th.lc_HeadingSort {
     font-weight: normal;
-    background: #e6eff7 url(listcomponent-header.png) repeat-x 0 0;
+    background: #e6eff7 url(https://rawgit.com/Blackbaud-RobertTester/component_resources/master/listcomponent-header.png) repeat-x 0 0;
     color: #20486b;
     text-align: left;
     border-bottom: 1px solid #c6d9e9;
@@ -1580,7 +1580,7 @@ th.lc_HeadingSort {
 th.lc_Footing,
 td.lc_Footing {
     font-weight: normal;
-    background: #e6eff7 url(listcomponent-header.png) repeat-x 0 0;
+    background: #e6eff7 url(https://rawgit.com/Blackbaud-RobertTester/component_resources/master/listcomponent-header.png) repeat-x 0 0;
     color: #20486b;
     text-align: left;
     border-top: 1px solid #c6d9e9;
