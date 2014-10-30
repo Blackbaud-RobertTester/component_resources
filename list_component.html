@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="https://rawgit.com/Blackbaud-RobertTester/component_resources/master/AdminStyle.css">
+</head>
+<body>
+<div ng-app="lcModule">
+    <div class="listContainer">
+        <table class="lc_PaginatorTable">
+            <tbody>
+                <tr class="lc_PaginatorRow">
+                    <td class="lc_PaginatorCell">
+                        <!-- Do not show 'Records 0 - 0 of 0' msg -->
+                        <p class="lc_Text">Records 1 - 1 of 1</p>
+                    </td>
+                    <td class="lc_PaginatorCell" align="right">
+                        <p class="lc_Text">&nbsp;&nbsp;
+                            <a class="lc_PaginatorLinks" href="#" title="Display first page of records in data table.">First</a>
+                            | <a class="lc_PaginatorLinks" href="#" title="Display previous page of records in data table.">Previous</a>
+                            | <a class="lc_PaginatorLinks" href="#" title="Display next page of records in data table.">Next</a>
+                            | <a class="lc_PaginatorLinks" href="#" title="Display last page of records in data table.">Last</a>
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="lc_FilterTable" border="0" cellpadding="1" cellspacing="1">
+            <tbody>
+                <tr class="lc_FilterRow" valign="top">
+                    <td class="lc_FilterCell">
+                        <div style="float: left;">
+                            <label for="filter_text"><span style="display:none;">Search by name.</span></label>
+                            <input name="filter_text" id="filter_text" size="37" maxlength="255" value="" accesskey="s" type="text">
+                            <input class="SmallButton" id="filter_search" name="filter_search" value="Search" title="Search" type="submit">
+                            <input class="SmallButton" id="show_all" name="show_all" value="Show All" title="Show All" type="submit">
+                            &nbsp;
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <input id="lcmd" name="lcmd" value="filtering" type="hidden">
+        <table id="lct_340338598" class="lc_Table" summary="This table lists the data items and information about them in each row." border="0" cellpadding="0" cellspacing="0" ng-controller="TableCtrl">
+            <tbody>
+                <tr class="lc_Row1" valign="top">
+                    <th scope="col" class="lc_Heading" ng-repeat-start="column in tableContents.header.columns">
+                        <span>{{column.name}}
+                    </th>
+                    <th scope="col" class="lc_HeadingSort" ng-repeat-end ng-if="tableContents.header.columns[tableContents.header.columns.length - 1] !== column">
+                        &nbsp;
+                    </th>                    
+                    <th scope="col" class="lc_HeadingSort" id="lc_sort_340338598_4">
+                        <img src="https://rawgit.com/Blackbaud-RobertTester/component_resources/master/sort.gif" usemap="#sort_340338598_4" alt="" border="0" height="16" width="11">
+                        <map name="sort_340338598_4" id="sort_340338598_4">
+                            <area shape="rect" coords="0,0,11,6" href="#" alt="Sort the Created By column in ascending order. Reloads page." title="Sort the Created By column in ascending order. Reloads page." >
+                            <area shape="rect" coords="0,8,11,16" href="#" alt="Sort the Created By column in descending order. Reloads page." title="Sort the Created By column in descending order. Reloads page.">                       
+                    </th>
+                </tr>
+                <tr ng-class-even="'lc_Row0'" ng-class-odd="'lc_Row1'" valign="top" ng-repeat="row in tableContents.rows">
+                    <td ng-repeat="cell in row.cells" class="lc_Cell" colspan="2">
+                        <table-cell cell="cell">
+
+                        </table-cell>
+                        <!--
+                        <div class="lc_Text">
+                            {{cell.name}}
+                        </div>                      
+                        <span class="lc_empty" style="display: none;">&nbsp;</span>
+                    -->
+                    </td>                   
+                </tr>
+            </tbody>
+        </table>
+        <!-- If column filter is enabled then initialize the hidden columns.  -->
+        <input id="lcmd_cf" name="lcmd_cf" value="" type="hidden">
+        <table class="lc_PaginatorTable">
+            <tbody>
+                <tr class="lc_PaginatorRow">
+                    <td class="lc_PaginatorCell">
+                        <!-- Do not show 'Records 0 - 0 of 0' msg -->
+                        <p class="lc_Text">Records 1 - 1 of 1</p>
+                    </td>
+                    <td class="lc_PaginatorCell" align="right">
+                        <p class="lc_Text">&nbsp;&nbsp;
+                            <a class="lc_PaginatorLinks" href="#" title="Display first page of records in data table.">First</a>
+                            | <a class="lc_PaginatorLinks" href="#" title="Display previous page of records in data table.">Previous</a>
+                            | <a class="lc_PaginatorLinks" href="#" title="Display next page of records in data table.">Next</a>
+                            | <a class="lc_PaginatorLinks" href="#" title="Display last page of records in data table.">Last</a>
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.0/angular.js" ></script>
+<script>    
+    var lcModule = angular.module('lcModule', []);
+
+    lcModule.controller('TableCtrl', function ($scope) {
+
+        $scope.tableContents = {
+            header: {
+                columns: [
+                    {name: 'Migration Name'}, 
+                    {name: 'Actions'}, 
+                    {name: 'Migration State'}, 
+                    {name: 'Migration Progress'}, 
+                    {name: 'Created By'}
+                ]
+            },
+            rows:[
+                {
+                    cells: [
+                        {name: 'Test Migration (10001)', isAction: false}, 
+                        {name: 'action', isAction: true}, 
+                        {name: 'Gateway configuration complete', isAction: false}, 
+                        {name: '0 of 0 gifts succesffuly migrated', isAction: false}, 
+                        {name: 'convio on 10/30/2014', isAction: false}
+                    ]
+                },
+                {
+                    cells: [
+                        {name: 'Migration 2 (10002)', isAction: false}, 
+                        {isAction: true, actions: [{name: 'Prepare Gifts for Export'}]}, 
+                        {name: 'Gateway configuration complete', isAction: false}, 
+                        {name: '0 of 0 gifts succesffuly migrated', isAction: false}, 
+                        {name: 'convio on 10/30/2014', isAction: false}
+                    ]
+                },
+                {
+                    cells: [
+                        {name: 'Migration 3 (10003)', isAction: false}, 
+                        {isAction: true, actions: [{name: 'Download File'}, {name: 'File Sent'}]}, 
+                        {name: 'CSV file ready to download', isAction: false}, 
+                        {name: '0 of 0 gifts succesffuly migrated', isAction: false}, 
+                        {name: 'convio on 10/30/2014', isAction: false}
+                    ]
+                }
+            ]
+            
+        }
+
+    });
+
+    lcModule.directive('tableCell', function($compile) {
+        
+        var getTemplate = function(isAction) {
+            if(isAction) {
+                return '<div class="lc_Text">' +
+                            '<a href="#" class="ListActionLinks" ng-repeat-start="action in cell.actions" title="{{action.name}}">{{action.name}}</a>' +
+                            '<br ng-repeat-end></br>' +
+                        '</div>';
+            } else {
+               return '<div class="lc_Text">' +
+                        '{{cell.name}}' +
+                    '</div>' +                       
+                    '<span class="lc_empty" style="display: none;">&nbsp;</span>';
+            }
+
+        }
+        
+        return {
+            restrict: 'E',            
+            scope: {
+                cell: '='
+            },
+            link: function(scope, element, attrs) {
+                element.html(getTemplate(scope.cell.isAction));
+                $compile(element.contents())(scope);                
+            }                
+        }
+
+    });
+
+</script>
+</body>
+</html>
