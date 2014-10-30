@@ -1,0 +1,3829 @@
+/* ************** */
+/* GENERAL STYLES */
+/* ************** */
+
+body {
+	color: #333;
+	text-align: left; /* override YUI Grids */
+	font-size: 14px;
+	line-height: 1.4;
+}
+
+h1 {
+	/*18px via YUI Fonts CSS foundation*/
+	font-size: 138.5%;
+}
+
+h2 {
+	/*16px via YUI Fonts CSS foundation*/
+	font-size: 123.1%;
+}
+
+h3 {
+	/*14px via YUI Fonts CSS foundation*/
+	font-size: 108%;
+}
+
+h1, h2, h3 {
+	margin: 1em 0;
+}
+
+h1, h2, h3, h4, h5, h6, strong, dt {
+	font-weight: bold; 
+}
+
+abbr, acronym {
+	border-bottom: 1px dotted #000;
+	cursor: help;
+} 
+
+em {
+	font-style: italic;
+}
+
+del {
+	text-decoration: line-through;
+}
+
+blockquote, ul, ol, dl {
+	margin: 1em;
+}
+
+ol, ul, dl {
+	margin-left: 2em;
+}
+
+ol li {
+	list-style: decimal outside;
+}
+
+ul li {
+	list-style: disc outside;
+}
+
+dl dd {
+	margin-left: 1em;
+}
+
+th {
+	font-weight: bold;
+	text-align: center;
+}
+
+p, fieldset, pre {
+	margin: 1em 0;
+}
+
+input[type="text"], input[type="password"], textarea, select[multiple] {
+	border: 1px solid #666;
+}
+
+select, input[type="submit"], input[type="radio"], input[type="checkbox"], label, button {
+    cursor: pointer;
+}
+
+button, input[type="button"], input[type="submit"], input[type="reset"] {
+	padding: 1px 6px;
+}
+
+input[type="radio"], input[type="checkbox"] {
+	margin: 0 5px;
+}
+
+/*
+ * HACK: When a table has cellpadding, apply that padding to its immediate td and th elements.
+ * 
+ * We reset the default padding on td and th elements to 0 to neutralize browser default padding, which varies.
+ * Tables with a class attribute will cascade their padding over their cells, but in the case of setting the padding 
+ * with the cellpadding attribute the td and th styles take precedence (at least in Firefox).
+ * 
+ * The correct solution is to never use the cellpadding attribute and instead give the table a class with padding.
+ * Even better is to not use tables for layout.
+ * 
+ * This fixes bug 38532 and over a thousand other uses of non-zero cellpadding.
+ * 
+ * The following styles cover all non-zero values currently in use, with a selector hack to exclude IE.
+ */
+html>/**/body table[cellpadding="1"] > tbody > tr > td, html>/**/body table[cellpadding="1"] > tbody > tr > th {
+	padding: 1px;
+}
+html>/**/body table[cellpadding="2"] > tbody > tr > td, html>/**/body table[cellpadding="2"] > tbody > tr > th {
+	padding: 2px;
+}
+html>/**/body table[cellpadding="3"] > tbody > tr > td, html>/**/body table[cellpadding="3"] > tbody > tr > th {
+	padding: 3px;
+}
+html>/**/body table[cellpadding="4"] > tbody > tr > td, html>/**/body table[cellpadding="4"] > tbody > tr > th {
+	padding: 4px;
+}
+html>/**/body table[cellpadding="5"] > tbody > tr > td, html>/**/body table[cellpadding="5"] > tbody > tr > th {
+	padding: 5px;
+}
+html>/**/body table[cellpadding="6"] > tbody > tr > td, html>/**/body table[cellpadding="6"] > tbody > tr > th {
+	padding: 6px;
+}
+html>/**/body table[cellpadding="7"] > tbody > tr > td, html>/**/body table[cellpadding="7"] > tbody > tr > th {
+	padding: 7px;
+}
+html>/**/body table[cellpadding="8"] > tbody > tr > td, html>/**/body table[cellpadding="8"] > tbody > tr > th {
+	padding: 8px;
+}
+html>/**/body table[cellpadding="10"] > tbody > tr > td, html>/**/body table[cellpadding="10"] > tbody > tr > th {
+	padding: 10px;
+}
+
+
+/*
+ * Deprecated: these are leftover from old hacks
+ */
+label.wrapable, .NetscapeFix, .Explicit, .NSRCFix {
+	/* TODO: no style needed; this is just a reminder to remove the class attributes */
+}
+
+a, a:visited {
+	color: #1441B3;
+	text-decoration: none;
+}
+
+a:hover, a:active, a:focus {
+    color: #5976C0;
+}
+
+span.fakeLink {
+    color: #2B52B4;
+}
+
+p.note {
+	font-size: 0.9em;
+	font-style: italic;
+}
+
+/* Deprecated: think about *why* the text is bold and use a semantic class */
+.Bold, .BoldItem {
+	font-weight: bold;
+}
+
+td > p:first-child {
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+.main {
+	margin-left: 20px;
+}
+
+/* Deprecated: think about *why* the text is smaller and use a semantic class */
+.Smaller, .RptWtrSmaller, input.SmallButton {
+	font-size: 90%;
+	padding: 1px 6px;
+}
+
+hr {
+	width: 640px;
+}
+
+hr.storySeparator {
+	width: 100%;
+}
+
+/* indent a block that isn't a block quote */
+div.subIndent {
+	margin-left: 10px;
+}
+
+/* provide a small amount of margin within some container */
+/* The 99% width fixes some oddities in some browsers when */
+/* the DIV contains a table and is itself within a DIV which */
+/* has a colored background and contains other tables. */
+/* Deprecated: think about *why* the block needs a small margin and use a semantic class */
+div.smallMargin {
+	margin: 4px;
+	width: 99%;
+}
+
+/* Deprecated: this is an abuse of fieldset */
+fieldset {
+	border: none;
+	display: inline;
+	margin: 0;
+	padding: 0;
+}
+
+fieldset.withBox {
+	border: 1px solid #006f82;
+	display: block;
+	padding: 0 4px 4px;
+}
+
+fieldset.noBox {
+	border: none;
+	display: block;
+	padding: 0 4px 4px;
+}
+
+legend {
+	font-size: small;
+	margin-left: 0;
+	padding-left: 0;
+	color: #000;
+}
+
+/*Sets the font style for all Calendar list headers ( example: days of the week)*/
+p.CalHeaderText {
+	color: black;
+	font-weight: bold;
+	margin-top: 4px;
+	margin-bottom: 4px;
+	text-align: center;
+}
+
+/* Read-only/view values */
+/* Deprecated: obviously these aren't used for all read-only text (that might be served by a plain paragraph), so what makes these special? */
+/* TODO: reconcile with PageInstructionText */
+div.ROValue, p.ROValue, td.ROValue {
+	font-size: small;
+	color: black;
+	background-color: #eee;
+	padding: 0.5em;
+}
+.clean p.ROValue {
+	margin-bottom: 1em;
+}
+
+/*Sets the font style for all section dividers*/
+/*
+	This is the new divider style that doesn't require a table.
+	Note that for NS4's sake we're using a transparent background
+	image. This forces NS4 to render the background color where
+	otherwise it would not.
+*/
+p.dividerHeading, h5.dividerHeading {
+	border-bottom: 1px solid #ccc;
+	font-weight: bold;
+	margin: 13px 0 2px;
+	padding: 1px 0;
+	clear: both;
+}
+
+table.vpConfig {
+	 border: 1px solid #ccc;
+}
+
+table.vpConfig th {
+	background-color: #e6f9e3;
+	background-image: URL(../images/sp.gif);
+	color: black;
+	font-weight: bold;
+	border: 1px solid #ccc;
+	padding: 1px 5px 1px 5px;
+	vertical-align: top;
+}
+
+table.vpConfig td {
+	border: 1px solid #ccc;
+	padding: 1px 5px 1px 5px;
+}
+
+/* HACK: make h5.dividerHeading behave like the UserGlobalStyle.css version when inside a td.FormSectionHeader (which is normally only found on constituent-facing pages) */
+/* A cleaner solution would be to switch the td to a th and drop the h5. */
+td.FormSectionHeader h5 {
+	background-color: inherit;
+	color: inherit;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	margin: 0;
+	padding: 1px 0;
+	width: 100%;
+}
+
+/*
+	The table-based divider stuff is for when we want a right-
+	aligned link or button in the divider.
+*/
+table.Divider {
+	background-color: #cce2e6;
+	padding-left: 0;
+}
+
+th.Divider {
+	background-color: #cce2e6;
+	padding-bottom: 1px;
+	padding-top: 1px;
+}
+
+tr.Divider {
+	background-color: #cce2e6;
+	padding-bottom: 1px;
+	padding-top: 1px;
+	font-weight: bold;
+}
+
+td.Divider {
+	background-color: #cce2e6;
+	font-weight: bold;
+}
+
+p.Divider {
+	color: black;
+	background-color: #cce2e6;
+	font-weight: bold;
+	padding-bottom: 1px;
+	padding-left: 0;
+	padding-top: 1px;
+}
+
+tr.spacerRow {
+	height: 10px;
+}
+
+/* TODO: find and cleanup abuses of this class */
+.Hint {
+	font-size: 90%;
+	color: #333;
+}
+
+/*Sets the font style for all list headings*/
+.ListHeadings {
+	font-size: small;
+	font-weight: bold;
+	border-bottom: 1px solid;
+	border-color: #bbb;
+	padding-left: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.ListItem {
+	font-size: 90%;
+}
+
+.ListItem0 {
+	background-color: #fff;
+	font-size: 90%;
+}
+
+.ListItem1 {
+	background-color: #eee;
+	font-size: 90%;
+}
+
+/*Sets the font for all Notes and Hints*/
+.NoteText {
+	font-size: 90%;
+}
+
+/* Deprecated: use margins for spacing, not spacers without margins */
+p.spacer {
+	margin: 0;
+}
+
+/* The "Small" ones are for Contact DB Configuration. */
+
+p.PaddedListHeadingsSmall {
+	margin: 2px 3px;
+	font-weight: bold;
+	font-size: 90%;
+}
+
+p.PaddedEntrySmall {
+	margin: 2px 3px;
+	font-size: 90%;
+}
+
+p.PaddedEntrySmallC {
+	margin: 2px 3px;
+	font-size: 90%;
+	text-align: center;
+}
+
+td.TableHeadings,
+th.TableHeadings {
+	background-color: #ccc;
+}
+
+td.TableHeadingsR,
+th.TableHeadingsR {
+	background-color: #ccc;
+	text-align: right;
+}
+
+/* these set the border and line color */
+td.WrapperBack,
+table.WrapperBack {
+	background-color: Black;
+}
+
+table.Backed,.backed {
+	background-color: transparent;
+	margin: 0;
+}
+
+/* Deprecated: Why do surveys need a special instruction style?  This doesn't seem to do much anyways. */
+p.surveyInstruction {
+	font-weight: normal;
+}
+
+.ProgressBox {
+	font-size: 90%;
+	background-color: #fe9;
+}
+
+.ProgressBoxCurrent {
+	font-size: 90%;
+	font-weight: bold;
+	background-color: #fe9;
+}
+
+table.ProgressBox {
+	padding-right: 4px;
+	padding-left: 4px;
+	border: #000 1px solid;
+}
+
+a.ProgressBox:link, a.ProgressBox:visited {
+	font-size: 90%;
+	color: black;
+}
+a.ProgressBox:hover {
+	font-size: 90%;
+	color: #f90;
+}
+
+/* Deprecated: think about *why* the text is centered and use a semantic class */
+p.centered {
+	text-align: center;
+}
+
+/* These control the End-User News Components */
+
+.headline, .headlinelist {
+	font-weight: bold;
+	font-size: medium;
+	color: #336;
+}
+
+/* Deprecated: use h2, h3 or th as appropriate */
+.subheading {
+	font-weight: bold;
+	color: #336;
+}
+
+span.byline {
+	font-style: italic;
+}
+
+p.photocaption, span.photocaption {
+	font-size: 90%;
+	font-style: italic;
+}
+
+/* calendar End-User Components */
+
+p.callist {
+	margin-left: 10px;
+}
+
+a.datelink {
+	font-weight: bold;
+}
+
+/* advocacy component */
+
+/* Deprecated: why are advocacy tables special? */
+table.advocacytable {
+	background-color: #fff;
+}
+
+/* Deprecated: why are advocacy messages special? */
+td.advocacyMessage {
+	background-color: #ccc;
+	padding: 6px;
+}
+
+/* Advocacy - Letter to the Editor */
+.lte-selectinator .yui-dt-hd table {
+	width: 100%;
+}
+
+.lte-selectinator .yui-dt-bd table {
+	width: 100%;
+	*width: auto;
+}
+
+
+/* Reports */
+
+table.reportTable {
+    border-collapse: separate;
+	border-left: 1px solid #ccc;
+	border-top: 1px solid #ccc;
+}
+
+
+th.reportHeading {
+	background-color: #dfeef0;
+	border-right: 1px solid #ccc;
+	vertical-align: middle;
+	border-bottom: 1px solid #ccc;
+}
+
+p.reportHeading {
+	color: #333;
+	font-size: 13px;
+	font-weight: bold;
+	margin: 2px 4px;
+}
+
+th.advoReportGlobalFailureHead {
+	background-color: #dfeef0;
+	border-right: 1px solid #ccc;
+	vertical-align: middle;
+	border-bottom: 1px solid #ccc;
+}
+
+p.advoReportGlobalFailureHead {
+	color: #333;
+	font-size: 13px;
+	font-weight: bold;
+	margin-left: auto;
+	margin-right: auto;
+    width: 85px;
+    word-wrap:
+}
+
+a.reportHeading:link,
+a.reportHeading:visited,
+a.reportHeading:hover {
+	color: #333;
+	font-size: small;
+	font-weight: bold;
+	margin: 2px 4px;
+}
+
+a.reportHeading:hover {
+	color: #ff9a02;
+}
+
+p.reportHeadingSmall {
+	color: #333;
+	font-size: 90%;
+	font-weight: bold;
+	margin: 2px;
+}
+
+p.reportHeadingR {
+	color: #333;
+	font-size: small;
+	font-weight: bold;
+	margin: 2px 4px;
+	text-align: right;
+}
+
+tr.reportSubtotal0,
+tr.reportBody0 {
+	background-color: #eee;
+}
+
+tr.reportSubtotal1,
+tr.reportBody1 {
+	background-color: #fff;
+}
+
+td.reportBody {
+	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+}
+
+a.reportBody,
+a.reportBody:link,
+a.reportBody:hover,
+a.reportBody:active,
+a.reportBody:visited {
+	font-size: 90%;
+}
+
+p.reportBody {
+	font-size: 90%;
+	margin: 0 4px 2px;
+}
+
+
+dl.reportBody {
+	margin: 0;
+}
+
+dt.reportBody {
+	font-size: 90%;
+	margin: 0 4px;
+}
+
+dd.reportBody {
+	font-size: 90%;
+	margin: 0 4px 0 14px;
+}
+
+p.reportBodyR {
+	font-size: 90%;
+	margin: 0 4px 2px;
+	text-align: right;
+}
+
+p.reportTotal {
+	font-size: 90%;
+	font-weight: bold;
+	margin: 0 4px 2px;
+}
+
+p.reportTotalR {
+	font-size: 90%;
+	font-weight: bold;
+	margin: 0 4px 2px;
+	text-align: right;
+}
+
+.reportSubtotal0 td,
+.reportSubtotal1 td {
+	border-bottom: solid 1px #666;
+	font-weight: bold;
+}
+
+a.reportBodySmall, p.reportBodySmall {
+	font-size: x-small;
+	margin: 0 2px 2px;
+}
+
+#ReportCustomSelectArea fieldset.ReportConfig {
+	display: block;
+	margin-top: 1em;
+}
+
+
+/* HTML editor */
+td.Toolbar {
+	background-color: #ccc;
+}
+
+/* Deprecated: this is only used in club_info_admin.tpt and shouldn't be needed */
+div.indentedBox {
+	width: 100%;
+	margin-left: 20px;
+	margin-top: 8px;
+	border: solid gray 1px;
+	padding: 0 6px;
+}
+
+/* Deprecated: this is only used in fr_admin_reg_*.tpt and shouldn't be needed */
+table.FieldTable tr {
+	vertical-align: top;
+}
+
+td.FieldLabel {
+	white-space: nowrap;
+}
+
+td.MoneyColumn {
+	text-align: right;
+}
+td.MoneyColumnTotal {
+	text-align: right;
+	border-top: 1px solid black;
+}
+
+#imgLibFldTbl tr {
+	vertical-align: top;
+	padding-bottom: 8px;
+}
+
+/* Deprecated: this is only used in ecommerce/store/confirmation_view_std.tpt and should be replaced with SuccessMessage */
+span.greenBold {
+	font-weight:bold;
+	color:#0F0;
+}
+
+/* Deprecated: this is only used in harness_result_page.tpt and should be replaced with a semantic style if it really is needed */
+.paraBlueSansSmall {
+	color:#00F;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:80%;
+
+}
+
+/* Deprecated: think about *why* the text is small and bold and use a semantic class */
+.smallBold {
+	font-weight:bold;
+	font-size:80%;
+}
+
+
+/* ************** */
+/* MESSAGE STYLES */
+/* ************** */
+
+.ErrorMessage, .WarningMessage {
+	font-weight: bold;
+	color: #c00;
+}
+.ErrorMessage a{
+	color: #000099;
+	font-weight: normal;
+	margin-left:15px;
+}
+
+.ErrorWarningMessage {
+	font-weight: bold;
+	color: #c00;
+}
+
+.MinorWarningMessage {
+	font-weight: bold;
+	color: #000;
+}
+
+.SuccessMessage {
+	color: #060;
+	font-weight: bold;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+/* Sets the style for descriptive text messages */
+.DescriptionText {
+	font-size: small;
+	color: #666;
+}
+
+
+/* ************** */
+/* ADMIN HEADER	*/
+/* ************** */
+
+#Header {
+	color: #333;
+	width: 100%;
+	/*
+	 * We need min-width wider than 60em to prevent the menu bar wrapping,
+	 * but but less than 73em to avoid horizontal scrolling at 1024px wide.
+	 * Using the low end of this range avoids scrolling for users who set 
+	 * their font size larger than 13px/em or don't maximize the window.
+	 * See bugs 32206 and 41177.
+	 * Update: With the addition of #header-advertisement I'm switching from
+	 *         em to px and using the de-facto standard of 960px.
+	 */
+	min-width: 960px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+/* smaller font for everything in the Header except the menu bar */
+#CenterSwitcherSwitch, #HeaderLinks, #SpamComplaints, #LogInUserInfo {
+	font-size: 85%;
+}
+
+#HeaderLogo {
+	border: none;
+	margin: 0 16px 6px 20px;
+}
+
+h1#PageTitle {
+	color: #333;
+	font-size: 150%;
+	font-weight: normal;
+	margin: 16px 16px 12px 20px;
+}
+
+.SuperAdmin {
+	color: black;
+	background-color: #FFF8D3;
+	padding-left: 0.25em;
+	padding-right: 0.25em;
+}
+
+#HeaderLinks {
+	float: right;
+}
+
+#header-advertisement {
+    float: right;
+    margin-right: 25px;
+}
+
+#HeaderInfo {
+	float: right;
+}
+
+#header-advertisement {
+	/* prevent advertisement from being higher than menu bar */
+	height: 1.231em;
+	overflow: visible;
+}
+
+#SpamComplaints {
+	float: right;
+	line-height: 2;
+}
+
+#LogInUserInfo, #CenterSwitcherSwitch {
+	float: right;
+	margin-right: 10px;
+	line-height: 2;
+}
+
+#HeaderLeft{
+	float: left;
+}
+
+#HeaderRight {
+	float: right;
+	margin-right: 25px;
+	width: 700px;
+}
+
+#HeaderLinks a,
+#HeaderLinks a:hover,
+#HeaderLinks a:visited,
+#HeaderLinks a:active,
+#CenterSwitcherSwitch a,
+#CenterSwitcherSwitch a:hover,
+#CenterSwitcherSwitch a:visited,
+#CenterSwitcherSwitch a:active {
+}
+
+#HeaderTop {
+    padding-top: 6px;
+    
+    /* default */
+    background-color: #ebf1f6;
+    
+    /* FF3.6+ */
+    background: -moz-linear-gradient(top, #FFFFFF 0%, #E8EFF9 80%, #E8EFF9 81%, #CFDFEF 100%);
+    
+    /* Chrome,Safari4+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFFFFF), color-stop(80%,#E8EFF9), color-stop(81%,#E8EFF9), color-stop(100%,#CFDFEF));
+    
+    /* Chrome10+,Safari5.1+ */
+    background: -webkit-linear-gradient(top, #FFFFFF 0%,#E8EFF9 80%,#E8EFF9 81%,#CFDFEF 100%);
+    
+    /* Opera11.10+ */
+    background: -o-linear-gradient(top, #FFFFFF 0%,#E8EFF9 80%,#E8EFF9 81%,#CFDFEF 100%);
+    
+    /* IE10+ */
+    background: -ms-linear-gradient(top, #FFFFFF 0%,#E8EFF9 80%,#E8EFF9 81%,#CFDFEF 100%);
+    
+    /* IE6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', endColorstr='#CFDFEF',GradientType=0 );
+    
+    /* W3C */
+    background: linear-gradient(top, #FFFFFF 0%,#E8EFF9 80%,#E8EFF9 81%,#CFDFEF 100%);
+}
+
+#HeaderBottom {
+	/* gets rid of submenu disappearing in IE7 */	
+    width: 100%;
+    
+    /* centers the menu vertically more */
+    padding-top: 8px;
+    
+    /* fills the gap between the submenu and parent menu item */
+    border-bottom: 2px solid #D4E1F1;
+    
+    /* default */
+    background-color: #ebf1f6;
+    
+    /* FF3.6+ */
+    background: -moz-linear-gradient(top, #E4EBF3 0%, #DDE7F3 80%, #DDE7F3 81%, #D4E1F1 100%);
+    
+    /* Chrome,Safari4+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#E4EBF3), color-stop(80%,#DDE7F3), color-stop(81%,#DDE7F3), color-stop(100%,#D4E1F1));
+    
+    /* Chrome10+,Safari5.1+ */
+    background: -webkit-linear-gradient(top, #E4EBF3 0%,#DDE7F3 80%,#DDE7F3 81%,#D4E1F1 100%);
+    
+    /* Opera11.10+ */
+    background: -o-linear-gradient(top, #E4EBF3 0%,#DDE7F3 80%,#DDE7F3 81%,#D4E1F1 100%);
+    
+    /* IE10+ */
+    background: -ms-linear-gradient(top, #E4EBF3 0%,#DDE7F3 80%,#DDE7F3 81%,#D4E1F1 100%);
+    
+    /* IE6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E4EBF3', endColorstr='#D4E1F1',GradientType=0 );
+    
+    /* W3C */
+    background: linear-gradient(top, #E4EBF3 0%,#DDE7F3 80%,#DDE7F3 81%,#D4E1F1 100%);
+}
+
+/* sets the appearance for object title */
+/* TODO: constrain this to h3 elements and then remove redundant attributes */
+.ObjTitle {
+	font-size: larger;
+	color: #333;
+	font-weight: bold;
+	margin: 0 0 6px;
+	padding: 0;
+	width: 100%;
+}
+
+/* application area with no width specified */
+/* application area with no width specified to account for some places where people have different capitalization */
+.appAreaNowidth,
+.appAreaNoWidth,
+.AppAreaNoWidth,
+div.appArea,
+div.AppArea {
+	margin-left: 50px;
+	margin-right: 25px;
+	margin-top: 5px;
+}
+
+/* application area */
+/* application area to account for some places where people have the camel-case version */
+div.appArea,
+div.AppArea {
+	width: 60em;
+}
+
+/* pop up window area w/ no width set */
+div.PopupArea {
+	margin-left: 25px;
+	margin-right: 10px;
+	margin-top: 15px;
+}
+
+
+/* ******************* */
+/* EMAIL APPLICATION   */
+/* ******************* */
+
+/* Deprecated: why are email splash tables special, and why is ecommerce using them too? */
+.EmailSplashTable,
+.EmailSplashTableCells {
+	border: 1px;
+	padding: 5px;
+}
+
+/* styles for main table on email splash page */
+.EmailSplashTable {
+	width: 60em;
+}
+
+/* styles for main table cells on email splash page */
+.EmailSplashTableCells {
+	width: 47%;
+}
+
+/* Styles for info tables on email splash page */
+.EmailSplashSubTable {
+	border-top: 0;
+}
+
+/* Styles for report titles on email splash page */
+.EmailSplashReportTitle {
+	font-size: small;
+	font-weight: bold;
+	color: #333;
+	background-color: #dfeef0;
+	border-top: 0;
+	padding: 2px 2px 2px 5px;
+}
+
+/* Styles for report definitions on email splash page */
+.EmailSplashReportDefinition {
+	font-size: 90%;
+	color: #000;
+	background-color: #eee;
+	border-top: 0;
+	padding: 5px 5px 10px;
+}
+
+/* Styles for report definitions on email splash page */
+.EmailSplashReport,
+.EmailSplashNoData {
+	font-size: 90%;
+	color: #000;
+	background-color: #fff;
+	border-top: 0;
+	padding: 2px;
+	width: 100%;
+}
+
+/* Styles for report definitions on email splash page */
+.EmailSplashErrorMessage {
+	font-size: 90%;
+	font-weight: bold;
+	color: #800000;
+	background-color: #fff;
+	border-top: 0;
+	padding: 2px;
+	width: 100%;
+}
+
+/* Styles for email list component columns */
+
+/* Deprecated: the uses of this look suspiciously like headings */
+.EmailObjName {
+	font-weight: bold;
+}
+
+.EmailObjSubName {
+	margin-left: 40px;
+}
+
+.EmailObjDesc {
+	font-size: 10px;
+	margin: 5px;
+}
+
+/* Deprecated: I'm not sure what's going on here, but it smells really bad; why are we applying block styling to both span and div elements? */
+td.lc_Cell .EmailObjActivityError,
+td.lc_Cell .EmailObjActivitySuccess,
+td.lc_Cell .EmailObjDesc {
+	display: block;
+}
+
+.EmailObjPurpose {
+	font-size: 10px;
+	margin: 5px;
+}
+
+/* Deprecated: is this really needed? */
+.EmailObjType {
+	white-space: normal;
+}
+
+/* Deprecated: this is only used by em_delivery_list_last_activity.tpt; do we really need a special color there? */
+span.EmailStateText {
+	font-weight: bold;
+	color: #330066;
+	white-space: nowrap;
+}
+
+/* Deprecated: use SuccessMessage instead */
+.EmailObjActivitySuccess {
+	font-size: 10px;
+	color: #060;
+	margin: 5px;
+}
+
+/* Deprecated: use ErrorMessage instead */
+.EmailObjActivityError {
+	font-size: 10px;
+	font-weight: bold;
+	color: #c00;
+	margin: 5px;
+}
+
+/* Deprecated: why do these tables need a special color? */
+.EmailObjStatistics {
+	font-size: 10px;
+	font-weight: bold;
+	color: #29006a;
+	background-color: transparent;
+}
+
+table.EmailObjStatistics td {
+	font-size: 10px;
+}
+
+/* Deprecated: do we really need this? */
+.EmailObjLastModified, .EmailObjCategory {
+	white-space: normal;
+}
+
+.MessageStatusReason {
+    font-size: 11px;
+    font-weight: normal;
+}
+
+/* class called EmailButtonCell to have correct button placement at bottom of Email App */
+/* Deprecated: what's wrong with our usual button placement? */
+.EmailButtonCell {
+	padding-left: 50px;
+	background-color: #fff;
+}
+
+.ActionButton,
+.ActionButtonRed {
+	font-size: 90%;
+	color: #fff;
+	font-weight: bold;
+	text-align: center;
+	display: block;
+	background-color: #060;
+	border: 2px outset #ccc;
+	padding: 3px;
+	min-width: inherit;
+	white-space: nowrap;
+}
+
+/* Deprecated: we could switch to a semantic style, but really we shouldn't need these buttons */
+.ActionButtonRed {
+	background-color: #900;
+}
+
+/* Softer Green Button in Process Pages  */
+div.ProcessAppArea input.ActionButton_disabled {
+	font-size: 100%;
+	background-color: #eee9e9;
+	color: #cdc9c9;
+	border: 1px solid;
+	border-color: #DEDEDE #BBB #BBB #DEDEDE;
+	padding: 2px 7px;
+}
+
+/* Softer Green Button in Process Pages  */
+div.ProcessAppArea input.ActionButton {
+	font-size: 100%;
+	background-color: #2b9b4e;
+	border: 1px solid;
+	border-color: #DEDEDE #BBB #BBB #DEDEDE;
+	padding: 2px 7px;
+}
+
+/* Left right grid
+/* Floats left pane to far left, and right to far right */
+/* <div class="GridLRContainer">  */
+/* <div class="GridLRLeftPane"/>  */
+/* <div class="GridLRRightPane"/> */
+/* </div>                         */
+/* <div class="GridLRClearPane"/>     */
+div.GridLRLeftPane {
+	float:left;
+}
+
+div.GridLRRightPane {
+	float:right;
+}
+
+div.GridLRClearPane {
+	clear:both;
+}	
+
+/* Styles for public viewable icon for steps on a given page */
+/* Styles for numbers used to ennumerate steps on a given page */
+td.field-public,
+td.field-number {
+	width: 15px;
+}
+
+td.field-required {
+	font-weight: bold;
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
+td.field-help {
+	font-weight: bold;
+	text-align: right;
+}
+
+/* Styles for text header for steps on a given page */
+/* TODO: field-label is mostly applied to td elements, but make it consistent */
+.field-label,
+td.checkbox-label,
+td.radio-label,
+label.radio-label,
+td.field-public,
+td.field-number,
+.clean div.field-markers,
+.clean legend,
+.clean label {
+	font-weight: bold;
+}
+
+td.filter-field-label{
+	color: #003087;
+	font-weight: bold;
+	font-size: 115%;
+}
+
+/* Styles for field description text/instructions used for steps on a given page */
+/* TODO: decide if this applies to td or p elements and make it consistent */
+.field-hint, td.checkbox-hint {
+	margin: 0 2px 0 0;
+	padding-bottom: 3px;
+}
+
+.disable-text {
+	color:Gray
+}
+
+/*Style to add a line below hint text.*/
+span#field-hint-sub-text {
+  display:block;
+  font-size: .8em;
+}
+
+/* Deprecated: use WarningMessage instead */
+.field-hint-warning {
+	color: red;
+}
+
+/* table header for selector box that contains all of the currently available choices */
+/* Deprecated: this is only used in a couple places; maybe we can convert to something more visually consistent with the rest of our product */
+th.ProcessFieldSelectorAll,
+th.ProcessFieldSelectorSelections {
+	font-size: 90%;
+	color: #fff;
+	font-weight: bold;
+	background-color: #900;
+	border: 1px outset #ccc;
+	padding: 5px;
+	white-space: nowrap;
+	margin: 2px;
+}
+
+/* table header for selector box that contains all of the selected choices */
+th.ProcessFieldSelectorSelections {
+	background-color: #060;
+}
+
+/* TODO: decide if this applies to tr or td and convert the others */
+/* TODO: even better, figure out a way to automatically pad rows correctly */
+tr.ProcessPaddedRow {
+	vertical-align: top;
+}
+tr.ProcessPaddedRow > td, td.ProcessPaddedRow {
+	padding-bottom: 12px;
+}
+
+/* select lists used in a pair for left-right selection */
+select.SelectorBox {
+	font-size: 85%;
+	color: #000;
+	min-width: 20em;
+	width: auto; /* causes bug 38991 */
+}
+
+/* TabTable class to create table that encompasses a list component, */
+/*  header title, and links to other table data */
+/* Deprecated: these tables don't need any special styling */
+table.TabTable {
+	/* TODO: migrate users of this class off of table-based layout */
+}
+
+/* Deprecated: this is only used by rptwrt_mgr_home.tpt which shouldn't need any special style */
+table.TabReportwriterTable {
+	background-color: #ddd;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	border-top: 1px solid #999;
+}
+
+/* Deprecated: this is only used by rptwrt_mgr_home.tpt which shouldn't need any special style */
+td.TabReportwriterTable {
+	background-color: #fff;
+	border-top: 1px solid #999;
+}
+
+/* Deprecated: this is only used by rptwrt_mgr_home.tpt which shouldn't need any special style */
+table.TabReportwriterTable tr.ProcessPaddedRow > td,
+table.TabReportwriterTable td.ProcessPaddedRow {
+	padding-bottom: 0;
+}
+
+td.TabTable, td.TabTableHeader, td.TabTableHeaderLinks {
+	border-right: 3px solid #fff;
+}
+
+span.TabTableHeader,
+div.TabTableHeader,
+a.TabTableHeader,
+a.TabTableHeaderLinks {
+	text-align: center;
+	font-weight: bold;
+	font-size: 108%;
+	display: block;
+	padding: 5px 10px 5px 10px;
+	white-space: nowrap;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+}
+span.TabTableHeader,
+a.TabTableHeader,
+div.TabTableHeader {
+	background-color: #666;
+	color: #fff;
+	border-radius: 5px 5px 0 0;
+}
+
+/* Links Tab header for list component encompassing table */
+a.TabTableHeaderLinks {
+	background-color: #FAFAFA;
+	color: #555;
+	border: 1px solid #CCC;
+	border-bottom-style: none;
+	padding-bottom: 4px; /* subtract border-top-width from padding-bottom */
+}
+
+A.TabTableHeader,
+A.TabTableHeader:visited,
+A.TabTableHeader:hover,
+A.TabTableHeader:active,
+A.TabTableHeaderLinks,
+A.TabTableHeaderLinks:visited,
+A.TabTableHeaderLinks:hover,
+A.TabTableHeaderLinks:active {
+	border-radius: 5px 5px 0 0;
+}
+
+/* List component cell for table that surrounds the list component */
+td.TabTableList,
+div.TabTableList {
+	background-color: #fff;
+	border-top: 3px solid #666;
+	padding-top: 5px;
+}
+
+/* Styles for status tables on delivery status page */
+td.DeliveryStatusLabel {
+	font-size: 90%;
+	color: #000;
+	font-weight: bold;
+	background-color: #cce2e6;
+	border-top: 0;
+	padding: 2px 5px;
+	width: 100%;
+}
+
+/* Styles for status tables on delivery status page */
+/* Deprecated: this is only used for process_status_line.tpt which shouldn't need special styling */
+.DeliveryStatusLine {
+	font-size: 90%;
+	color: #000;
+	background-color: #eee;
+	border-top: 0;
+	padding: 2px;
+	width: 100%;
+}
+
+/* Styles for status text on delivery status page */
+/* Deprecated: this is only used for process_status_detail.tpt which shouldn't need special styling */
+td.DeliveryStatusDetail {
+	font-size: 90%;
+	font-weight: bold;
+	color: #29006a;
+	border-top: 0;
+	padding: 2px 5px;
+}
+
+/* Styles for status text on delivery status page */
+/* Deprecated: this is only used for process_status_detail.tpt which shouldn't need special styling */
+td.DeliveryStatusDetailRight {
+	font-size: 90%;
+	font-weight: bold;
+	color: #29006a;
+	border-top: 0;
+	padding: 2px 5px;
+	text-align: right;
+}
+
+/* Styles for status text on delivery status page */
+/* Deprecated: this is only used for process_status_detail.tpt which shouldn't need special styling */
+td.DeliveryStatusDetailCenter {
+	font-size: 90%;
+	font-weight: bold;
+	color: #29006a;
+	border-top: 0;
+	padding: 2px 5px;
+	text-align: center;
+}
+
+/* Indent fields dependent on checkbox or radio buttons */
+tbody.IndentUnderCheckbox .field-label,
+tbody.IndentUnderCheckbox .field-input,
+tbody.IndentUnderCheckbox .link-anchor,
+.IndentUnderRadio .field-label,
+.IndentUnderRadio .field-input,
+.IndentUnderRadio .BeanOutputText {
+	padding-left: 28px;
+}
+
+.IndentUnderRadio .textarea-field-input,
+.IndentUnderRadio table.locale-selector {
+	margin-left: 28px;
+}
+
+/* Prevent extra padding between checkbox and its label
+	when under a radio button */
+.IndentUnderRadio .CheckboxItemTable .field-label {
+	padding-left: inherit;
+}
+
+
+/* Double Indent fields dependent on checkbox */
+.DblIndentUnderCheckbox .field-label,
+.DblIndentUnderCheckbox .field-input {
+	padding-left: 56px;
+}
+
+.field-input .ErrorMessage {
+	margin: 0;
+}
+
+/* ************************* */
+/* EMAIL SPLASH PAGE REPORTS */
+/* ************************* */
+
+th.EmailSplashReportTableHeader,
+td.EmailSplashReportTableCells {
+	padding: 2px;
+	border-bottom: 1px solid gray;
+	border-left: 1px solid gray;
+}
+
+/*  Styles for email splash page report table header */
+th.EmailSplashReportTableHeader {
+	font-weight: bold;
+	background-color: #ccc;
+	padding: 2px 5px;
+}
+
+/* Styles for email splash page report table links */
+/* Deprecated: use ListActionLinks instead */
+a.EmailSplashReportTableLinks,
+a.EmailSplashReportTableLinks:visited,
+a.EmailSplashReportTableLinks:hover,
+a.EmailSplashReportTableLinks:active {
+	font-size: 90%;
+	color: #009;
+}
+
+a.EmailSplashReportTableLinks:visited {
+	color: #306;
+}
+
+a.EmailSplashReportTableLinks:hover,
+a.EmailSplashReportTableLinks:active {
+	color: #ff9a02;
+}
+
+/*  Styles for email splash page report definition lists */
+dl.EmailSplashReportDefinitionList {
+	font-size: 90%;
+	color: #000;
+	margin: 0;
+}
+
+/*  Styles for email splash page report definition term */
+.EmailSplashReportDefinitionTerm {
+	font-size: 90%;
+	font-weight: bold;
+	color: #29006a;
+	margin: 0;
+}
+
+/*  Styles for email splash page report definitions */
+dd.EmailSplashReportDefinitions {
+	font-size: 90%;
+	color: #000;
+	margin: 0 0 0 8px;
+}
+
+
+/* ****** */
+/* eCARDS */
+/* ****** */
+
+/* Deprecated: I don't think this is used on Admin pages, but if so they shouldn't need special styling */
+.eCards {
+	margin: 8px;
+	background-color: #fff;
+}
+
+/* Styles for placing a container-like box around an object or page element */
+.previewBox {
+	border: 1px solid Black;
+	padding: 3px;
+}
+
+/*  Styles for eCards preview page.  Show disabled textarea & text input fields */
+/*  in a style that looks like they still work. */
+textarea.Disabled, input.Disabled {
+	background-color: #fff;
+	border: 1px solid #bbb;
+}
+
+/* ************************* */
+/* LIST COMPONENT CONTROLS   */
+/* ************************* */
+
+/* Deprecated: paragraph tags aren't needed for table cell padding */
+p.PaddedListHeadings,
+p.PaddedListHeadingsC,
+p.PaddedListHeadingsR {
+	font-size: 90%;
+	margin: 2px 3px;
+	font-weight: bold;
+	color: #000;
+	white-space: nowrap;
+}
+
+p.PaddedListHeadingsC {
+	text-align: center;
+}
+
+p.PaddedListHeadingsR {
+	text-align: right;
+}
+
+p.PaddedEntry,
+p.PaddedEntryC {
+	margin: 2px 3px;
+	font-size: small;
+}
+
+p.PaddedEntryC {
+	text-align: center;
+}
+
+p.PaddedEntryR {
+	margin: 2px 0 2px 6px;
+	font-size: small;
+	text-align: right;
+}
+
+p.PaddedEntryB {
+	margin: 2px 0 2px 6px;
+	font-size: small;
+	font-weight: bold;
+}
+
+table.lc_FilterTable {
+    width: 100%;
+    border-top: 1px solid #c6d9e9;
+}
+.lc_FilterRow {
+	font-size: small;
+}
+
+table.lc_Table {
+    width: 100%;
+    border: 1px solid #c6d9e9;
+}
+
+/*  column headers */
+th.lc_Heading,
+th.lc_HeadingSort {
+    font-weight: normal;
+    background: #e6eff7 url(../images/listcomponent-header.png) repeat-x 0 0;
+    color: #20486b;
+    text-align: left;
+    border-bottom: 1px solid #c6d9e9;
+    padding: 6px 5px 6px 5px;
+    white-space: nowrap;
+}
+
+/* sort buttons */
+th.lc_HeadingSort {
+    text-align: right;
+}
+
+th.lc_Footing,
+td.lc_Footing {
+    font-weight: normal;
+    background: #e6eff7 url(../images/listcomponent-header.png) repeat-x 0 0;
+    color: #20486b;
+    text-align: left;
+    border-top: 1px solid #c6d9e9;
+    padding: 6px 5px 6px 5px;
+    white-space: nowrap;
+}
+
+/* line items */
+
+tr.lc_Row0 {
+	background-color: #f2f2f2;
+}
+
+tr.lc_Row1, .lc_Totals {
+	background-color: #fff;
+}
+
+td.lc_Cell {
+    padding: 5px;
+    margin: 5px;
+    border-left: 1px solid #e4e4e4;
+}
+
+.lc_Text {
+	font-size: 90%;
+	color: #000;
+}
+
+/* Sets the text style for email app list components 'last activity' cell */
+/* Deprecated: 'last activity' shouldn't need special styling */
+.LastActivityText {
+	font-size: small;
+	color: #000;
+	margin: 0 5px 5px;
+}
+
+/*  Styles for list column paginator table */
+tr.lc_PaginatorRow,
+td.lc_PaginatorCell,
+table.lc_PaginatorTable {
+	color: #000;
+	white-space: nowrap;
+}
+
+tr.lc_PaginatorRow {
+	vertical-align: bottom;
+}
+
+table.lc_PaginatorTable {
+	margin: 0 0 3px 0;
+	background-color: transparent;
+}
+
+a.lc_PaginatorLinks {
+	font-size: 90%;
+	text-align: center;
+	white-space: nowrap;
+}
+
+a.lc_PaginatorLinks:hover,
+a.lc_PaginatorLinks:active {
+}
+
+
+/* Styles for list cache tree */
+td.lc_TreeSelected {
+	background-color: #fff;
+	border: 1px solid #ccc;
+	padding: 0 3px;
+}
+
+a.lc_Tree {
+	font-size: 90%;
+	border: 0;
+}
+
+a.lc_TreeSelected {
+	font-size: 90%;
+	font-weight: bold;
+	color: #29006a;
+	
+	border: 0;
+}
+
+/* Deprecated: this is only used by TreeView_node.tpt so maybe it doesn't need to be special
+ *             if it really does need unique styling, let's just inline it */
+.TreeViewName {
+	padding-left: 1em;
+}
+
+/* Styles for list component images links - want no border on the sort images */
+a.TableImageLinks {
+	font-size: 90%;
+	border: 0;
+}
+
+
+/* class called ListActionLinks to set up anchor tags with correct display properties for */
+a.ListActionLinks {
+	font-size: 90%;
+	text-align: center;
+	white-space: nowrap; /* ### Do we need this? */
+}
+
+/* class for setting the active status text to bold */
+span.ListStatusActive {
+	font-size: 90%;
+	font-weight: bold;
+	color: #000;
+}
+
+/* class to set up div for entire popup app area */
+div.PopupAppArea {
+	margin-left: 5px;
+	margin-top: 10px;
+	margin-right:5px;
+}
+
+/* class called PopupAppTable to create table holding popup app - white background */
+/* Deprecated: this is a misuse of a table */
+table.PopupAppTable {
+	background-color: #fff;
+	width: 100%;
+	border: 0;
+	margin: 0;
+	padding: 2px;
+}
+
+/* class called PopupButtonCell to have correct button placement at bottom of popup app */
+/* Deprecated: this is a misuse of a table */
+td.PopupButtonCell {
+	padding-left: 50px;
+	background-color: #fff;
+}
+
+/* **************************** */
+/* CONTRIBUTED CONTENT STYLES   */
+/* **************************** */
+
+/* TODO: determine if contributed content styles are only used for public-facing pages, and if so remove them from this file */
+
+/* Styles for tables around sample content view */
+/* Deprecated: this is a misuse of a table */
+table.SolictedContentSampleTable {
+	font-size: small;
+	color: #000;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	padding: 5px;
+	width: 100%;
+}
+
+.CustomText {
+	font-size: small;
+	color: #000;
+	text-align: justify;
+}
+
+
+/* Styles for solicited content headline links */
+.CustomHeadline	{
+	font-size: 14px;
+	font-weight: bold;
+	color: #009;
+}
+
+.CustomHeadline a {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+/* Styles for solicited content byline text */
+.CustomByline	 {
+	font-size: 90%;
+	color: #333;
+}
+
+/* Styles for solicited content date text */
+p.CustomDate {
+	font-size: 90%;
+	color: #333;
+}
+
+/* Styles for solicited content time and location text */
+span.CustomTimeLocation	 {
+	font-size: small;
+	font-weight: bold;
+	color: #333;
+	margin: 0 10px 2px 0;
+}
+
+/* Styles for solicited content information links */
+.CustomInfoLink	{
+	font-size: small;
+	color: #369;
+}
+
+/* Styles for Related Links component header text */
+/* Deprecated: this should just be a th with default styling */
+td.CustomInfoLinkHeader	{
+	font-size: 90%;
+	color: #333;
+}
+
+/* Deprecated: this is only used in collection_item_status.tpt which shouldn't need special styling */
+td.PublishDate {
+	color: #3c0;
+	font-size: .80em;
+	white-space: nowrap;
+}
+
+/* Deprecated: this is only used in collection_item_status.tpt which shouldn't need special styling */
+.ExpireDate {
+	color: #f33;
+	font-size: .80em;
+	white-space: nowrap;
+}
+
+/* Deprecated: this is only used in collection_item_*.tpt which shouldn't need special styling */
+td.ContributionDate {
+	font-size: .80em;
+	white-space: nowrap;
+}
+
+/* Styles for page title */
+/* Deprecated: use an h2 or h3 element with default styling instead */
+.PageHeader {
+	font-size: 13px;
+	color: #29006a;
+	font-weight: bold;
+}
+
+/* Styles for instruction text */
+/* TODO: reconcile this with ROValue */
+.PageInstructionText {
+	font-size: small;
+	color: #000;
+	margin-left: 16px;
+}
+
+/* Styles for table headers */
+/* Deprecated: this is only used by uic_csv_preview_header_element.tpt which shouldn't need special styling */
+th.TableHeaderTitle {
+	font-size: small;
+	font-weight: bold;
+	color: #000;
+	background-color: #ccc;
+	border-top: 0;
+	padding: 0 2px;
+	white-space: nowrap;
+	width: 100%;
+}
+
+/* Deprecated: why does this row get a line?  use a semantic style instead */
+tr.TableLineRow td {
+	border-top: 1px solid black;
+}
+
+/* Styles for grey backed tables */
+/* Deprecated: use semantic styles */
+.TableBackground {
+	font-size: 90%;
+	color: #000;
+	background-color: #eee;
+	border: 0;
+	padding: 0 0 2px;
+}
+
+/* Styles for grey backed tables w/ border */
+/* Deprecated: use semantic styles */
+table.TableBackgroundBordered {
+	font-size: 90%;
+	color: #000;
+	background-color: #eee;
+	border: 1px solid #333;
+	padding: 0 0 2px;
+}
+
+/* Styles for table headers */
+/* Deprecated: use a default th or a semantic style */
+th.TableHeaderLabel {
+	font-size: 90%;
+	color: #000;
+	font-weight: bold;
+	background-color: #cce2e6;
+	padding: 4px 5px;
+}
+
+/* Styles for table cell items */
+/* Deprecated: use a default td or a semantic style */
+td.TableCellLabel {
+	font-size: 90%;
+	color: #000;
+	padding: 5px 5px 4px;
+}
+
+
+/* Styles for summary info tables in various applications */
+/* Deprecated: this is only used on a few pages in advocacy and friendraiser, do we really need special styling for these tables? */
+table.SummaryTable {
+	font-size: 90%;
+	color: #fff;
+	
+	background-color: #fff;
+	border-top: 0;
+	padding: 0;
+	width: 100%;
+}
+
+/* Styles for table titles in various applications */
+/* Deprecated: remove this along with SummaryTable */
+.SummaryTableTitle {
+	font-size: small;
+	font-weight: bold;
+	color: #000;
+	background-color: #cce2e6;
+	border: 0;
+	padding: 2px 2px 2px 5px;
+}
+
+/* Styles for summary table body in various applications */
+/* Deprecated: remove this along with SummaryTable */
+.SummaryTableBody {
+	font-size: 90%;
+	color: #000;
+	background-color: #eee;
+	border: 0;
+	padding: 5px;
+}
+
+/* Styles for filter summary table body in various applications */
+/* Deprecated: remove this along with SummaryTable */
+.FilterSummaryTableBody {
+	color: #000;
+	background-color: #fff;
+	border: 0;
+	padding: 25px;
+}
+
+
+/* FIXME: SummarySubTable styles are referenced in Java code (bug 42186) */
+
+/*  Styles for table headers on filter summary tables */
+th.FilterSummarySubTableHeader {
+	color: #003087;
+	font-weight: bold;
+	background-color: #eee;
+	border: 1px solid #ddd;
+	padding: 2px 5px;
+	text-align: left;
+}
+
+/*  Styles for table headers on summary tables */
+th.SummarySubTableHeader {
+	font-weight: bold;
+	font-size: 90%;
+	color: #333;
+	background-color: #ddd;
+	border: 1px solid #666;
+	padding: 2px 5px;
+	text-align: left;
+}
+
+td.SummarySubTableHeader {
+	font-weight: bold;
+	color: #333;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	padding: 2px 5px;
+	
+}
+
+td.SummarySubTableSubCells {
+	background-color: #eee;
+	border: 1px solid #ddd;
+	padding: 2px 5px;
+}
+
+/*  Styles for table headers on summary tables */
+.SummarySubTableCells {
+	background-color: #fff;
+	border: 1px solid #ddd;
+	padding: 2px 5px;
+}
+
+/*  Styles for table headers on summary tables */
+.SummarySubTableCellsRight {
+	background-color: #fff;
+	border: 1px solid #ddd;
+	padding: 2px 5px;
+	text-align: right;
+}
+
+/*  Styles for table headers on summary tables */
+.SummarySubTableTotalCells {
+	font-weight: bold;
+	color: #29006a;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	padding: 2px 5px;
+}
+
+/*  Styles for table headers on summary tables */
+.SummarySubTableTotalCellsRight {
+	font-weight: bold;
+	color: #29006a;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	padding: 2px 5px;
+	text-align: right;
+}
+
+
+/* FIXME: ReportSummarySubTable styles are referenced in ReportConfigurationStatus.java (bug 40799) */
+
+/* ReportWriter Summary headers and cells */
+/*  Styles for table headers on summary tables */
+.ReportSummarySubTableHeader {
+	font-weight: bold;
+	padding: 2px 5px;
+	text-align: left;
+	vertical-align: top;
+}
+
+/*  Styles for table headers on summary tables */
+.ReportSummarySubTableCells {
+	padding: 2px 5px;
+}
+
+
+/* Styles for placing a container-like box around an object or page element */
+/* Deprecated: why do some elements need boxes?  use a semantic style instead */
+.ContainerBox {
+	font-size: 90%;
+	color: #000;
+	
+	background-color: #eee;
+	border: 1px solid #777;
+	padding: 3px;
+}
+
+
+/*  Styles for email splash page report definition term */
+/*  Styles for lists of important items that are not in a specific table */
+/* Deprecated: there has to be a better way */
+.EmailSplashReportDefinitionTerm,
+span.BoldLabelText {
+	font-size: 90%;
+	font-weight: bold;
+	color: #29006a;
+	margin: 0;
+}
+
+/*  Styles for bold title text */
+/* Deprecated: if this really is used on admin-facing pages, use an h2 or h3 instead */
+.BoldTitleText {
+	font-size: 13px;
+	font-weight: bold;
+	color: #29006a;
+	margin: 0;
+	white-space: nowrap;
+}
+
+
+/*  Small font version of ObjTitle.  Used for Transaction Management pop up windows. */
+/* Deprecated: use an h4 instead */
+.SmallObjTitle {
+	font-size: small;
+	font-weight: bold;
+	color: #000;
+	border-bottom: 1px solid #ff9a02;
+	margin: 0 0 10px 0;
+}
+
+
+/*  Bold font for fieldset legend text. */
+/* Deprecated: use "fieldset > legend" selector instead */
+legend.FieldsetLegend {
+	font-size: small;
+	font-weight: bold;
+}
+
+#fr_reg_info_comp tr {
+	vertical-align: top;
+}
+
+/* certain text can be highlighted in a different color */
+/* Deprecated: only used by rel_link_list_act_cell.tpt where the semantics is "is top level item" */
+span.HighlightedText {
+	color: #004;
+}
+
+div.FormInsetBox {
+	background-color: #ddd;
+	border: 1px solid #eee;
+	margin: 10px;
+	padding: 0;
+	width: 30em;
+}
+
+/* Deprecated: these styles are only used by cons_admin_prefs_row.tpt and dir_segment_optin_item.tpt which shouldn't need a special table style */
+table.DirSegmentOptin {
+	color: #000;
+	background-color: #fff;
+	padding: 1px;
+	margin: 5px;
+	white-space: nowrap;
+	width: 98%;
+	border: 1px solid #ccc;
+}
+
+td.DirSegmentOptinCell {
+	font-size: 90%;
+	color: #000;
+	background-color: #fff;
+	padding: 1px;
+	margin: 5px;
+	white-space: normal;
+	width: 9em;
+}
+
+td.DirSegmentOptinHeader {
+	font-size: 90%;
+	font-weight: bold;
+	color: #29006a;
+	padding: 1px;
+	margin: 5px;
+	white-space: normal;
+	width: 9em;
+}
+
+/* Deprecated: use WarningMessage instead */
+div.TransactionWarning {
+	border: 2px solid #900;
+	padding: 0 1em;
+	background-color: #ffe;
+	margin-top: 15px;
+}
+
+/* Deprecated: use WarningMessage instead */
+.TransactionWarning {
+	font-weight: bold;
+}
+
+/* TODO: confirm that this is not used for admin-facing pages and remove it */
+.TransactionItemHighlight {
+	color: #060;
+}
+
+/* Deprecated: these list items shouldn't need any special margins */
+ul.TransRefundConfirmItems li {
+	margin-top: 1em;
+}
+
+/*  div style to differentiate online transactions */
+/* Deprecated: try to reconcile this with other ways of emphasizing or highlighting text  */
+div.OnlineHeading {
+	background-color: #ff9a02;
+	font-size: 13px;
+	color: #fff;
+	font-weight: bold;
+	margin: 0;
+	padding: 2px 4px;
+	width: 100%;
+}
+
+/*  div style to differentiate offline transactions */
+/* Deprecated: try to reconcile this with other ways of emphasizing or highlighting text  */
+div.OfflineHeading {
+	background-color: #cce2e6;
+	font-size: 13px;
+	color: #000;
+	font-weight: bold;
+	margin: 0;
+	padding: 2px 4px;
+	width: 100%;
+}
+
+/*  table style with borders around the outside */
+/* Deprecated: this is only used by GroupReg_Detail.tpt and isn't needed */
+table.BorderedTable {
+	margin: 0;
+	padding: 0;
+	border: 1px solid Gray;
+}
+
+
+/*  table cell style with no border */
+/* Deprecated: this is only used by GroupReg_Detail.tpt and isn't needed */
+td.NoBorderCell {
+	border: 0;
+	padding: 2px 3px 2px 5px;
+	margin: 5px;
+}
+
+
+/* Deprecated: MultiDoc shouldn't need any special styling */
+td.MultiDocItem {
+	white-space: nowrap;
+}
+.MultiDocSelectedItem {
+	background-color: #ddd;
+}
+tr.MultiDocHeader {
+	background-color: #cce2e6;
+	color: #000;
+	text-align: left;
+}
+table.MultiDocItemList {
+	text-align: left;
+	width: 80%;
+}
+p.MultiDocCaption {
+	text-align: left;
+	margin-bottom: 10px;
+	width: 100%;
+	text-align: justify;
+}
+
+
+/* TODO: determine if Vote* styles are admin facing and if not remove them */
+
+/* Styles for vote tally bar - votes for */
+td.VoteForTally {
+	background-color: #008000;
+	border: 0;
+}
+
+/* Styles for vote tally bar - votes against */
+td.VoteAgainstTally {
+	background-color: #900;
+	border: 0;
+}
+
+/* Styles for vote tally bar - no vote */
+td.VoteNoneTally {
+	background-color: #777;
+	border: 0;
+}
+
+td.VoteListHeader {
+	background: #ddd;
+	padding: 5px;
+	border-top: 1px solid #999;
+}
+
+table.VoteDetailTable {
+	padding: 0;
+}
+
+td.VoteDetailHeaderCell1 {
+	border-top: 1px solid #999;
+	border-left: 1px solid #999;
+	border-bottom: 1px solid #999;
+	padding: 2px;
+}
+
+td.VoteDetailHeaderCell2 {
+	border-top: 1px solid #999;
+	border-right: 1px solid #999;
+	border-bottom: 1px solid #999;
+	padding: 2px;
+}
+
+table.VoteStatusTable {
+	padding-left: 5px;
+	padding-right: 10px;
+}
+
+td.VoteStatusLabel {
+	white-space: nowrap;
+	font-weight: bold;
+	padding-top: 5px;
+	padding-right: 5px;
+	vertical-align: top;
+	text-align: left;
+}
+
+td.VoteStatusValue {
+	padding-top: 5px;
+	text-align: left;
+}
+
+/* Styles for explorer controller cell */
+/* Deprecated: this is only used by list_component_explorer.tpt and seems to be a misuse of a table */
+td.ExplorerControlCellHidden {
+	padding: 2px;
+	width: 2%;
+}
+
+/* Styles for explorer controller cell */
+/* Deprecated: this is only used by list_component_explorer.tpt and seems to be a misuse of a table */
+td.ExplorerListComponentCellExpanded {
+	padding: 2px;
+	height: auto;
+	width: 98%;
+}
+
+/* Deprecated: if this really is admin-facing, it shouldn't be needed */
+td.AlertListDescription {
+	color: black;
+	font-size: 90%;
+}
+
+/*  Styles for key votes cells */
+/* Deprecated: if this really is admin-facing, it shouldn't be needed */
+td.KeyVotesTableCells {
+	background-color: #fff;
+	border: 1px solid #ddd;
+	padding: 2px 5px;
+	width: 49%;
+}
+
+/* Styles for explorer controller cell */
+/* Deprecated: this is only used by list_component_explorer.tpt and seems to be a misuse of a table */
+td.ExplorerControlCell {
+	background-color: #ddd;
+	border: 1px outset #ccc;
+	padding: 2px;
+	width: 20%;
+}
+
+/* Styles for explorer controller cell */
+/* Deprecated: this is only used by list_component_explorer.tpt and seems to be a misuse of a table */
+td.ExplorerListComponentCell {
+	padding: 2px;
+	height: auto;
+	width: 80%;
+}
+
+/* Deprecated: if this really is admin-facing, it shouldn't be needed */
+td.AlertListName {
+	font-weight: bold;
+}
+
+/* Deprecated: if this really is admin-facing, it shouldn't be needed */
+td.AlertListActionDate, td.AlertListResponseCount {
+	font-size: smaller;
+}
+
+/*
+ These styles are in here rather than PremiumStyle.css
+ because they are used when the cart is rendered as an Interaction.
+ 
+ FIXME: either share the stylesheet or don't share the templates
+*/
+
+/* Deprecated: use a semantic style */
+span.CartItemName {
+	font-weight: bold;
+}
+
+/* Deprecated: this shouldn't be needed */
+table.CartItemConfig {
+	width: 100%;
+}
+
+/* Deprecated: cart items shouldn't need special table styling */
+td.CartItemConfigLabel {
+	font-weight: bold;
+	font-size: 80%;
+}
+
+/* Deprecated: cart items shouldn't need special table styling */
+td.CartItemConfigValue {
+	font-size: 80%;
+}
+
+span.ShoppingPrice {
+	font-weight: bold;
+}
+
+span.ShoppingStandardPrice {
+	text-decoration: line-through;
+	color: red;
+}
+
+span.ShoppingDiscountedPrice {
+	font-weight: bold;
+}
+
+div.ShoppingCartContents {
+	clear: left;
+}
+
+/* Deprecated: this is only used by task_recurring_ctrl.tpt which shouldn't need special table styling */
+table.TaskRecurCtrl td {
+	padding: 2px 4em 2px 1em;
+	vertical-align: top;
+}
+
+/* Deprecated: just use a regular AppArea */
+div.Don2AppArea {
+	margin-left: 5px;
+	margin-top: 10px;
+}
+
+/*
+ Progress Bar styles
+ 
+ TODO: determine if these are ever used for admin pages, and if not remove them
+*/
+div.progressBorder {
+  height: 15px;
+  width: 205px;
+  background: #fff;
+  border: 1px solid silver;
+  margin: 0;
+  padding: 0;
+}
+
+div.progressBar {
+  height: 11px;
+  margin: 2px;
+  padding: 0;
+}
+
+input.currencyInput {
+  text-align: right
+}
+
+/* Deprecated: these columns are only used by fr_navbar_edit.tpt and can be replaced by YUI Grids  */
+div.column1-2, div.column2-2 {
+        vertical-align: top;
+}
+div.column1-2 {
+        width: 49%;
+        float: left;
+        clear: left;
+}
+div.columns {
+	clear: both;
+}
+div.column1-2, div.column2-2 {
+	width: 48%;
+	float: left;
+	padding-right: 2%;
+}
+
+/* Deprecated: buttons class is only used by fr_navbar_edit.tpt which shouldn't need special styling */
+.buttons {
+	margin: 20px 0 6px 0;
+	text-align: right;
+}
+.buttons input { margin: 0 4px; }
+
+/* Deprecated: this doesn't seem to be used on admin pages, but if so rename to describe what it contains */
+div.container {
+	margin: 1em 0 2em;
+}
+
+/* Deprecated: containerTitle should be a heading instead of a div, and maybe doesn't need to be special */
+div.container div.containerTitle {
+	height: 28px;
+	background: #fff url(../images/ga/bg-header.jpg) repeat-x bottom left;
+	font-size: 13px;
+	font-weight: bold;
+	line-height: 32px;
+	padding: 0 8px;
+	border: 1px solid #ccc;
+}
+
+div.container div.containerTitle img {
+	position: relative;
+	top: 0.2em;
+	right: 0.2em;
+}
+
+div.container div.containerButtons {
+	position: relative;
+	float: right;
+	top: -31px;
+	text-align: right;
+	font-weight: normal;
+	font-size: 11px;
+	color: #555;
+}
+
+div.container div.containerTitle select {
+	font-weight: normal
+}
+
+div.container div.containerButtons input {
+	position: relative;
+	top: 3px;
+
+}
+
+div.container div.containerBody {
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-top: 0;
+}
+
+/* Deprecated: only used by fr_navbar_*_edit.tpt which shouldn't need special styling */
+a.fadedBtn, a.fadedBtn img {
+    filter: Alpha(opacity=50); /* IE */
+    -moz-opacity: 0.75;        /* Mozilla */
+    vertical-align: middle;
+    margin: 0 3px 0;
+    border: 0;
+    cursor: pointer;
+}
+a.fadedBtn:hover, a.fadedBtn:hover img, .fadedBtn:hover {
+    filter: Alpha(opacity=100);
+    -moz-opacity: 1.0;
+}
+
+a.LocaleSelected {
+	background-color: #cce2e6;
+}
+
+a.LocaleAvailable {
+	background-color: #fff;
+}
+
+
+/* TeamRaiser navbar */
+/* TODO: determine if this really is used on any admin pages; if not, remove */
+div.FrNavbar {
+  color:            #666;
+  width:            100%;
+  line-height:      1.5em;
+}
+
+div.FrNavbarSection {
+  color:            #FFF;
+  background-color: #000;
+  text-align:       center;
+  font-size:        larger;
+  font-weight:      bold;
+  width:            100%;
+}
+
+div.FrNavbarLinks ul {
+  list-style-type:      none;
+  list-style-position:  outside;
+  margin:               0;
+  padding:          0 5px 10px;
+}
+
+div.FrNavbarLinks ul li {
+}
+
+div.FrNavbarLinks ul li a {
+  color: #000;
+}
+
+
+a.LocaleSelected,
+a.LocaleSelected:visited,
+a.LocaleSelected:hover,
+a.LocaleSelected:active,
+a.LocaleAvailable,
+a.LocaleAvailable:visited,
+a.LocaleAvailable:hover,
+a.LocaleAvailable:active {
+	font-size:85%;
+	color: #333;
+	font-weight: bold;
+	text-align: center;
+	display: block;
+	padding: 2px 10px;
+	white-space: nowrap;
+   	border-left: 1px solid #006f82;
+	border-right: 1px solid #006f82;
+	border-top: 1px solid #006f82;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+}
+a.LocaleAvailable:hover,
+a.LocaleAvailable:active {
+	color: #fff;
+	background-color: #4093a1;
+}
+
+/* Deprecated: these are only used by team_divisions_component.tpt and donation_levels_component.tpt, which shouldn't need special styling */
+span.TeamDivisionLabelPadLeft, span.FrDonationLevelPadLeft {
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+span.TeamDivisionLabel, span.FrDonationLevelLabel {
+    font-weight: bold;
+}
+
+span.FrDonationLevelPadLeft2 {
+    font-weight: bold;
+    padding-left: 75px;
+}
+
+/* Deprecated: this is only used by survey_interest_editor_table.tpt which shouldn't need special styling */
+#surveyIntCatTable {
+	border-bottom: 1px solid #006f82;
+	border-left: 1px solid #006f82;
+}
+
+#surveyIntCatTable th {
+	border-top: 1px solid #006f82;
+	border-right: 1px solid #006f82;
+	padding: 3px;
+	background: #ddd;
+}
+
+#surveyIntCatTable td {
+	border-top: 1px solid #006f82;
+	border-right: 1px solid #006f82;
+	padding: 3px 5px;
+}
+
+/* Deprecated: this is only used by fr_tenting_status_info.tpt and should be replaced with a semantic style */
+div.GrayPadded {
+    background: #eee;
+    padding: 5px;
+}
+
+/* Deprecated: this is only used by ConsConfig_Group.tpt which shouldn't need special styling */
+table.ConsConfig {
+	width: 100%;
+	border: 1px solid Gray;
+	border-collapse: collapse;
+}
+
+table.ConsConfig th {
+	font-weight: bold;
+	background-color: #ccc;
+	color: #000;
+	text-align: left;
+	border-left: 1px solid Gray;
+	border-bottom: 1px solid Gray;
+	padding: 2px 3px;
+	white-space: nowrap;
+}
+
+table.ConsConfig td {
+	border-left: 1px solid Gray;
+	padding: 5px;
+	margin: 5px;
+}
+
+/* Deprecated: this is only used by ConsConfig_Page.tpt which shouldn't need special styling */
+div#ConsConfigTooltip {
+	z-index: 2;
+	position: absolute;
+	background-color: InfoBackground;
+	color: InfoText;
+	padding: 3px;
+	white-space: nowrap;
+	border: 1px solid InfoText;
+}
+
+/* clearfix */
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix {
+	display: inline-block;
+}
+
+/* Hides from IE-mac \*/
+* html .clearfix {
+	height: 1%;
+}
+
+.clearfix {
+	display: block;
+}
+/* End hide from IE-mac */
+
+#process_actions {
+	margin: 1em 25px 1em 40px;
+}
+
+span.process_step_link {
+	color: #666;
+}
+
+#process_primary_actions span.process_step_link {
+	position: relative;
+	top: -0.3em;
+}
+
+#process_primary_actions span.process_step_link input {
+	position: relative;
+	*top: 0.15em;
+	*left: -0.4em;
+}
+
+/* make some buttons look like links */
+span.process_step_link input {
+	color: #1441B3;
+	background-color: transparent;
+	border: none;
+	padding: 0;
+	font-size: 100%; /* override form input */
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+div.ProcessLinkButtonComponent {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-left: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #f6f7ee;
+    border: solid 1px #c4c4be;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+}
+div.ProcessLinkButtonComponent:hover {
+    background-color: #f0f0f0;
+    cursor: pointer; cursor: hand;
+}
+div.ProcessLinkButtonComponent a {
+}
+div.ProcessLinkMenuVertical {
+    padding-left: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 304px;
+    border: solid 1px #c4c4be;
+}
+div.ProcessLinkMenuHorizontal {
+    padding-left: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-left: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: solid 1px #c4c4be;
+}
+span.ProcessLinkMenuItemHorizontal {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-left: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #f6f7ee;
+    border: solid 1px #c4c4be;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+}
+span.ProcessLinkMenuItemHorizontal:hover {
+    background-color: #f0f0f0;
+    cursor: pointer; cursor: hand;
+}
+span.ProcessLinkMenuItemHorizontal a {
+}
+span.fauxCrumbSelected {
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 5px;
+}
+
+span.fauxCrumbNotSelected {
+    color: #7c7c7c;
+    padding: 5px;
+}
+
+span.fauxCrumbContainer {
+    padding: 5px;
+    /* background: url('../images/vm/faux-breadcrumb-background.gif') repeat-x; */ 
+}
+
+/* Procses Generic Link Display */
+div.ProcessGenericLinkDisplay.plain {
+	margin-right:10px;		
+	margin-top:10px;
+	margin-bottom:25px;			
+}	
+
+div.ProcessGenericLinkDisplay.plain a {
+	margin-left:10px;	
+	font-size:115%;	
+	margin-bottom:10px;
+	display:block;
+}
+
+div.ProcessGenericLinkDisplay.or {
+	margin-top:10px;
+	margin-bottom:25px;			
+}
+
+div.ProcessGenericLinkDisplay.or a {
+	font-size:115%;
+}	
+
+div.ProcessGenericLinkDisplay.decorated {
+	margin-right:10px;		
+	margin-bottom:25px;	
+}
+
+div.ProcessGenericLinkDisplay.decorated span.yui-button {
+	margin-left:5px;		
+	margin-top:7px;
+	padding-left:20px;
+	padding-right:20px;
+	display:block;
+	background-color:#F5F5F5;
+	text-align:center;	
+}
+
+/* Process Presentation Object Styles */
+div.ProcessPresentationObjHeaderLabel {
+	font-size:150%;
+	font-weight:bold;
+	padding-left:25px;
+	padding-bottom:5px;
+}
+
+div.ProcessPresentationObjectHeaderTypeLabel {
+	font-size:90%;
+	font-weight:bold;	
+	padding-left:25px;
+	padding-top:12px;
+}
+
+table.ProcessPresentationContainerPane {
+	width:900px;
+}
+
+td.ProcessPresentationHeaderPane {
+	width:700px;
+}	
+
+div.ProcessPresentationParentHeaderSubTitle {
+	color: #5795C7;
+	font-size:80%;
+}
+
+div.ProcessPresentationParentHeaderTitle a.HeaderLink,
+a.HeaderLink:hover,
+a.HeaderLink:active,
+a.HeaderLink:visited {
+	white-space: nowrap;
+	color: #5795C7;
+	font-weight: bold;
+}
+
+div.ProcessPresentationParentHeaderTitle {
+	font-size:125%;
+	color: #5795C7;
+}
+
+div.ProcessPresentationParentHeader {
+	padding: 5px 20px 5px 30px;
+	border: 1px solid #0F0;
+	background: URL(../images/process/flag_green.png) 8px 8px no-repeat #FFD;
+}
+
+
+/* custom reusable components */
+
+.yui-skin-convio .selectinator .selectinator-navigation {
+	margin-top: 0.5em;
+}
+
+.yui-skin-convio .selectinator .selectinator-navigation :first-child {
+	margin-left: 0;
+}
+
+.yui-skin-convio .selectinator .yui-dt-liner {
+	/* we'll add padding inside yui-dt-liner, so minimal padding here */
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.yui-skin-convio .selectinator .yui-dt-label {
+	/* 2px on yui-dt-liner plus 8px here for 10px total */
+	padding-left: 8px;
+	padding-right: 8px;
+	display: block; /* contine padding on wrapped lines */
+}
+
+.yui-skin-convio .selectinator .selectinator-node {
+	/* allow room for icons as background images */
+	padding-left: 0px;
+	padding-right: 16px;
+}
+
+.yui-skin-convio .selectinator-shelf .yui-dt .yui-dt-hd,
+.yui-skin-convio .selectinator-shelf .yui-dt th {
+	background: #ddd url(../yui/datatable/assets/skins/convio/gradient-gray-48px.png) repeat-x 0 0;
+}
+
+.yui-skin-convio .selectinator .yui-dt th {
+	border-right-style: none !important;
+}
+
+.yui-skin-convio .selectinator .selectinator-node-non-leaf {
+	background-image: url(../images/selectinator/arrow-gray.png);
+	background-repeat: no-repeat;
+	background-position: right 4px;
+}
+
+.yui-skin-convio .selectinator .yui-dt-selected .selectinator-node-non-leaf {
+	background-image: url(../images/selectinator/arrow-blue.png);
+}
+
+.yui-skin-convio .selectinator .selectinator-active-table .yui-dt-selected .selectinator-node-selectable {
+	background-image: url(../images/accept.gif);
+	background-repeat: no-repeat;
+	background-position: right top;
+}
+
+.yui-skin-convio .lte-selectinator #categoryDiv tr.yui-dt-even .yui-dt-liner,
+.yui-skin-convio .lte-selectinator #categoryDiv tr.yui-dt-odd .yui-dt-liner {
+	background: url(../images/selectinator/arrow-gray.png) right center no-repeat;
+}
+
+.yui-skin-convio .lte-selectinator #categoryDiv tr.yui-dt-selected .yui-dt-liner {
+	background: url(../images/selectinator/arrow-blue.png) right center no-repeat;
+}
+
+/* TODO: update the others to use clickable-datatable class */
+.yui-skin-convio .clickable-datatable tr.yui-dt-even:hover td,
+.yui-skin-convio .clickable-datatable tr.yui-dt-odd:hover td,
+.yui-skin-convio #image_library_list tr.yui-dt-even:hover td,
+.yui-skin-convio #image_library_list tr.yui-dt-odd:hover td,
+.yui-skin-convio .lte-selectinator #categoryDiv tr.yui-dt-even:hover td.yui-dt-col-text,
+.yui-skin-convio .lte-selectinator #categoryDiv tr.yui-dt-odd:hover td.yui-dt-col-text,
+.yui-skin-convio .selectinator tr.yui-dt-even:hover .yui-dt-liner,
+.yui-skin-convio .selectinator tr.yui-dt-odd:hover .yui-dt-liner {
+	cursor: pointer;
+	color: #fff;
+	background-color: #3e85c6;
+}
+
+.yui-skin-convio .selectinator tr.yui-dt-even:hover .yui-dt-liner.selectinator-node-non-removable,
+.yui-skin-convio .selectinator tr.yui-dt-odd:hover .yui-dt-liner.selectinator-node-non-removable {
+	cursor: default;
+}
+
+.yui-skin-convio .selectinator .yui-navset input[type="text"] {
+	border: 1px solid #999;
+}
+
+.yui-skin-convio .selectinator-shelf .yui-dt {
+	zoom: 1; /* hasLayout weirdness in IE7 (bug 44144) */
+}
+
+.yui-skin-convio .selectinator-shelf .yui-dt-liner {
+	position: relative; /* establish position context for .selectinator-shelf-remove icon */
+}
+
+.yui-skin-convio .selectinator-shelf .selectinator-shelf-remove {
+	position: absolute;
+	top: 4px;
+	right: 4px;
+	visibility: hidden;
+}
+.yui-skin-convio .selectinator-shelf .yui-dt-liner:hover .selectinator-shelf-remove {
+	visibility: visible;
+}
+
+/* stream-line-process */
+
+#stream-line-process div#application-container {
+	width: 100%;
+	padding-top: 20px;
+}
+
+#stream-line-process div#application-footer {
+}
+
+#stream-line-process div#primary-nav-links {
+	background-color: #fff;
+	height: auto;
+	margin: 0;
+	padding: 3px 5px 0 20px;
+}
+
+#stream-line-process div#primary-nav-links a {
+	
+	white-space: nowrap;
+	display: block;
+	padding: 6px 9px;
+	margin-right: 3px;
+}
+
+#stream-line-process div#primary-nav-links .SecondaryNavLinkSelected {
+	font-weight: bold;
+	color: #D6EFF7;
+	background-color: #3982BD;
+	border: none;
+}
+
+#stream-line-process div#primary-nav-links .SecondaryNavLink {
+	font-weight: bold;
+	color: #5795C7;
+}
+
+#stream-line-process div#section-container {
+	display: table;
+	background-color: #E4F4FA;
+	border-top: 3px solid #3982BD;
+	padding-bottom: 20px;
+	padding-right: 20px;
+}
+
+#stream-line-process div#secondary-nav-links {
+	margin-left: 10px;
+	padding: 3px 5px 0 20px;
+}
+
+#stream-line-process div#secondary-nav-links a {
+	white-space: nowrap;
+	display: block;
+	padding: 6px 9px;
+	margin-right: 3px;
+	border: 1px solid #ccc;
+	border-bottom: 2px solid #fff;
+}
+
+#stream-line-process table.TertiaryNavBar {
+	position:inherit;
+}	
+
+#stream-line-process div#secondary-nav-links .TertiaryNavLinkSelected {
+	margin-left: 10px;
+	color: black;
+	background-color: white;
+	border: 1px solid #BED6E9;
+	border-bottom: none;
+	position:relative;
+	top:0px;
+}
+
+#stream-line-process div#secondary-nav-links .TertiaryNavLink {
+	margin-left: 10px;
+	color: #416481;
+	background-color: #F0F6FD;
+	border-top: 1px solid #BED6E9;
+	border-left: 1px solid #BED6E9;
+	border-right: 1px solid #BED6E9;
+	border-bottom: 1px solid #7AAFD5;
+}
+
+#stream-line-process div#process-container {
+	margin-left: 25px;
+}
+
+#stream-line-process div#process-container .process-left-container {
+
+}
+
+#stream-line-process div#process-container .process-left-container.single {
+}
+
+#stream-line-process div#process-container .process-left-container.double {
+}
+
+#stream-line-process div#process-container div.ProcessErrorMessage {
+	padding-bottom: 10px;
+}
+
+#stream-line-process div#process-container div.ProcessAppArea {
+	padding-right:10px;
+	padding-left:10px;
+	padding-top:10px;
+}
+
+#stream-line-process div#process-right-container {
+}
+
+#stream-line-process div#process-right-container div.ProcessStepList {
+	background-color: #F0F6FD;
+	border-top: 1px solid #BED6E9;
+	border-right: 1px solid #BED6E9;
+	border-bottom: 1px solid #BED6E9;
+	padding-right: 10px;
+	margin-top:20px;
+	margin-bottom:20px;
+}
+
+#stream-line-process div#process-right-container li.ProcessStep {
+	list-style-type:none;
+	color: #7AAFD5;
+}
+
+#stream-line-process table.ProcessContent {
+	
+}
+
+#stream-line-process td.ProcessContentRight {
+	vertical-align: top;
+}	
+	
+#stream-line-process td.ProcessContentLeft {
+	vertical-align: top;	
+	height:100%;
+	border: 1px solid #7AAFD5;
+	background-color: #FFFFFF;	
+}	
+
+ 
+#stream-line-process div#process-right-container .ProcessCurrentStep {
+	position: relative;
+	left: -1px;
+	background-color: white;
+	border-top: 1px solid #7AAFD5;
+	border-right: 1px solid #7AAFD5;
+	border-bottom: 1px solid #7AAFD5;
+	border-left: none;
+	font-weight: bold;
+	color: black;
+}
+
+#stream-line-process div#process-right-container .FlowStepsList {
+	padding-left: 0;
+}
+
+
+#stream-line-process div.ProcessStepButtons {
+	padding-bottom:5px;	
+}	
+
+#stream-line-process div.ProcessAppAreaTitle {
+	padding-top:15px;
+	padding-bottom:15px;
+}
+
+#stream-line-process div.ProcessAppAreaTitle .Title {
+	font-size:150%;
+	font-weight:bold;
+}
+
+#stream-line-process div.ProcessAppAreaTitle .SubTitle {
+	padding-top:5px;
+	font-size:120%;
+	font-weight:bold;		
+}
+
+#stream-line-process div.ProcessAppAreaTitle .Hint {
+	padding-top:5px;
+	white-space: normal;
+	width:80%;
+}
+
+#stream-line-process div.ProcessAppAreaTitle.process_step {
+	padding-left:30px;	
+}	
+
+#stream-line-process td.lc_Cell {
+	padding:0 5px 10px 0;
+	margin:0;
+		
+}	
+
+#stream-line-process .lc_Table {
+	border:none;
+    border-collapse:separate;	
+}
+
+#stream-line-process th.lc_Heading {
+	border:none;
+	background-color:#FFF;	
+	padding:0px;
+}
+
+#stream-line-process th.lc_HeadingSort {
+	border:none;
+	background-color:#FFF;
+}
+
+#stream-line-process td.lc_Cell {
+	border-left:none;
+	border-bottom:1px solid #cccccc;
+	padding-top:10px;
+}
+
+#stream-line-process tr.lc_Row0 {
+	background-color:#FFF;
+}
+
+#stream-line-process .TableImageLinks {
+	display:none;
+}
+
+#stream-line-process .lc_PaginatorCell.Top {
+	padding-top:20px;
+	padding-bottom:10px;
+}
+		
+#stream-line-process .lc_PaginatorCell.Bottom {
+	padding-top:40px;
+	padding-bottom:10px;
+}
+
+#stream-line-process .lc_PaginatorCell.Link.Top {
+	visibility:hidden;
+}
+
+#stream-line-process .lc_PaginatorCell.Link.Bottom {
+	
+}
+
+#stream-line-process .lc_PaginatorTable {
+	width:100%;
+}
+
+#stream-line-process .DropShadowContainer {
+	position: relative;
+	left: 20px;
+	top: 13px;
+	margin-right: 3px;
+	margin-bottom: 10px;
+}
+ 
+#stream-line-process .DropShadowDiv2,
+#stream-line-process .DropShadowDiv3 {
+	position: relative;
+	left: -3px;
+	top: -3px;
+}
+ 
+#stream-line-process .DropShadowDiv1 {
+	background: #F1F0F1;
+}
+ 
+#stream-line-process .DropShadowDiv2 {
+	background: #DBDADB;
+}
+ 
+#stream-line-process .DropShadowDiv3 {
+	background: #B8B6B8;
+}
+
+
+#stream-line-process .checkbox-label {
+	color:#000;
+	font-weight:normal;	
+}	
+
+#stream-line-process td.field-label {
+	color:#666666;
+	font-weight:normal;
+	padding-bottom:3px;
+}
+
+#stream-line-process td.field-label.required {
+	color:#000;	
+}
+
+#stream-line-process td.field-required {
+	padding-bottom:3px;
+	color:#000;
+	font-weight:normal;	
+}
+
+#stream-line-process td.field-public {
+	padding-bottom:3px;
+}
+
+#stream-line-process .field-hint {
+	display: none;
+}
+
+#stream-line-process div.field-hint-img {
+	background-image: URL(../images/process/help.png);
+	background-repeat: no-repeat;
+	padding-right:16px;
+	display:inline;
+}		
+
+#stream-line-process td.field-number {
+	padding-bottom:3px;	
+	color:#000;
+	font-weight:normal;	
+}
+
+#stream-line-process td.radio-label {
+	color:#000;
+	font-weight:normal;	
+}
+
+#stream-line-process span.field-required-phrase {
+	padding-right:3px;
+	color:#7d7d7d;
+}
+
+#stream-line-process div.yui-tt div.bd {
+	background-color:#FFFFAA;
+	color:#5D5D5D;
+	padding:5px;
+	border-color:#3982BD;
+}
+
+#stream-line-process div.ProcessInlineWarningMessage {
+	padding-left:20px;
+	background-image: url('../images/process/inline_warning.png');
+	background-repeat: no-repeat;
+	background-position: 0px 0px;	
+}
+
+#stream-line-process div.ProcessInlineErrorMessage {
+	padding-left:20px;
+	background-image: url('../images/process/inline_error.png');
+	background-repeat: no-repeat;
+	background-position: 0px 0px;		
+}
+
+/* lightbox styles */
+#stream-line-process .hd {
+	text-align: center;
+	background-color: #ffffff;
+	color: #000000;
+}
+
+#stream-line-process .bd {
+	background-color: #ffffff;
+	color: #ffffff;
+}
+
+#stream-line-process .lb-background {
+	background-color: #000000;
+	color: #FFFFFF;
+	display: none;
+}
+
+#stream-line-process ul li {
+	list-style-type: none;
+}
+
+
+/*
+ * Improved defaults for clean markup.
+ */
+
+.clean h1 {
+	font-size: 138.5%; /* 18px */
+	line-height: 133%; /* 24px */
+	margin-top: 0;
+	margin-bottom: 0.4444em; /* 8px */
+}
+
+.clean h2 {
+	margin-bottom: 0;
+}
+
+.clean h3 {
+	margin-bottom: 0;
+}
+
+.clean p {
+	margin-top: 0;
+}
+
+.clean fieldset {
+	display: block; /* override deprecated default fieldset */
+}
+
+.clean legend {
+	/* HACK: fix for bug 42648 */
+	*position: relative;
+	*left: -0.5em;
+}
+
+.clean input[type="radio"],
+.clean input[type="checkbox"] {
+	margin-left: 0; /* override my mistake in the default */
+}
+
+
+/*
+ * Override default list styles for a list of fields.
+ */
+
+.clean fieldset ol {
+	margin: 0;
+}
+
+.clean fieldset ol li {
+	padding: 0.4em 0;
+	list-style-type: none;
+}
+
+.clean fieldset ol li fieldset ol li {
+	padding: 0;
+}
+
+/*
+ * Establish the visual structure of a field.
+ */
+
+.clean li.field div.field-markers {
+	float: left;
+	text-align: right;
+	/* set width to margin-left of field-content minus a gap between the two elements */
+	width: 4.5em;
+}
+
+.clean li.field div.field-markers * {
+	vertical-align: top;
+}
+
+.clean li.field div.field-content,
+.clean li.field fieldset.field-content {
+	margin-left: 5.0em;
+}
+
+.clean li.field p {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.clean li.field span.marker-container {
+	/* behave like an image */
+	display: inline-block;
+	height: 16px;
+	width: 16px;
+}
+
+.aural-only {
+  position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
+
+/* 
+ * Temporarily hide nodes pending progressive enhancement.
+ * Because this class can only be removed by Javascript,
+ * it must also only be added by Javascript (otherwise 
+ * we're not really doing progressive enhancement).
+ * See preEnhance and postEnhance in utils.js
+ */
+.pending-progressive-enhancement {
+	display: none;
+}
+
+/*
+ * When a link is pending progressive enhancement as a Button,
+ * hold the space the button will occupy.
+ */
+a.pending-progressive-enhancement {
+	display: inline-block;
+	visibility: hidden;
+	height: 32px;
+}
+
+/*
+ * Decorate element with a "loading" icon.
+ * TODO: reconcile this with .cnv-dt-loading-wait 
+ */
+.loading {
+	background:url(../images/process/loading.gif);
+	background-repeat: no-repeat;
+	background-position: 2px center;
+	/* allow room for a background image */
+	padding-left: 20px; 
+}
+
+.DarkProcessBox {
+    background-color: #ddd;
+    border: 1px solid #999;
+    padding: 1em;
+    width: 600px;
+}
+.OpenAuthC1 {
+    position: relative;
+}
+.OpenAuthC2 {
+    position: relative;
+    top: -6px;
+    left: 5px;
+}
+
+.WarningProcessBox {
+	width: 556px;
+	border: 1px solid #ccc;
+	padding-top: 0;
+	padding-left: 30px;
+	margin: 0;
+	background-color: #ffd;
+	background-image: url('../images/Admin/warning.png');
+	background-repeat: no-repeat;
+	color: #666;
+}
+
+.WarningProcessBoxHeader {
+	font-size: 13px;
+	font-weight: bold;
+	margin-bottom: 4px; /* Adds additional space below header */
+	margin-top: 4px;
+}
+
+.WarningProcessBoxBody {
+	margin-top: 0;
+	padding-right: 8px;
+	font-family: arial;
+	font-size: 13px;
+	line-height: 16px;
+}
+
+
+.TipProcessBox {
+	width: 150px;
+	border: 1px solid #ccc;
+	padding-top: 0;
+	padding-left: 30px;
+	margin: 0;
+	background-color: #ffd;
+	background-image: url('../images/Admin/warning.png');
+	background-repeat: no-repeat;
+	color: #666;
+}
+
+.TipProcessBoxHeader {
+	font-size: 13px;
+	font-weight: bold;
+	margin-bottom: 4px; /* Adds additional space below header */
+	margin-top: 4px;
+}
+
+.TipProcessBoxBody {
+	margin-top: 0;
+	padding-right: 8px;
+	font-family: arial;
+	font-size: 13px;
+	line-height: 16px;
+}
+
+
+/*
+ * Five-column layout.
+ *
+ * Similar to 960 Grid System, except our columns are 3/16 of 960px.
+ */
+.four-mini-column,
+.one-column,
+.two-column,
+.three-column,
+.four-column,
+.five-column {
+	float: left;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.first-column {
+	margin-left: 0;
+}
+
+.last-column {
+	margin-right: 0;
+}
+
+.center-column {
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.left-column {
+	float: left;
+}
+
+.right-column {
+	float: right;	
+}
+
+.one-column {
+	width: 160px;
+}
+
+.two-column {
+	width: 340px;
+}
+
+.three-column {
+	width: 520px;
+}
+
+.four-column {
+	width: 700px;
+}
+
+.five-column {
+	width: 880px;
+}
+
+.four-mini-column {
+	width: 220px;
+}
+
+.important-info {
+	color: #666;
+	background-color: #ffd;
+	padding: 4px;
+}
+.important-info a:hover {
+	color: #c00;
+}
+
+.subordinate-info {
+	color: #666;
+	font-size: 85%;
+}
+
+.disabled-info {
+	color: #666;
+}
+.disabled-info2 {
+    color: #999;
+}
+
+table.light-datatable {
+	color: #666;
+	background-color: white;
+	table-layout: fixed;
+	width: 100%;
+	border-top: 1px solid #ccc;
+	margin-bottom: 1em;
+}
+
+table.light-datatable tr {
+	border-bottom: 1px solid #eee;
+}
+
+table.light-datatable td.data,
+table.light-datatable th.data {
+  text-align: right;
+}
+
+table.light-datatable td.label,
+table.light-datatable th.label {
+  text-align: left;
+}
+
+.component-block {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 4px;
+}
+
+.inline-control {
+    padding-right: 2em;
+    whitespace: nowrap;
+    display: inline;
+}
+
+.inline-control .inline-control-inner {
+    padding-right: 1em;
+}
+
+.text-divider-bar {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+a.SelectActionLink, a.SelectActionLink:visited {
+    font-size: 90%;
+    color: #3391c4;
+}
+a.SelectActionLink:hover, a.SelectActionLink:active {
+    font-size: 90%;
+    color: #3daeea;
+}
+
+a.helpIcon {
+	
+}
+a.helpIcon span {
+	text-decoration: underline;
+}
+
+.hiddenObj {
+	display:none;
+}
+
+.transListDonFormName{
+	font-size: 90%;
+}
+
+
+dl.table-display
+{
+    width: 320px;
+    margin: 1em 0;
+    padding: 0;
+    border-bottom: 1px solid #999;
+}
+
+.table-display dt
+{
+    clear: left;
+    float: left;
+    width: 200px;
+    margin: 0;
+    padding: 5px;
+    border-top: 1px solid #999;
+    font-weight: bold;
+}
+
+.table-display dd
+{
+    margin: 0;
+    padding: 5px;
+    border-top: 1px solid #999;
+}
+
+#Header .productSwitcher { 
+	padding-top: 4px;
+} 
+ 
+#Header .productSwitcher .yuimenu .bd { 
+  border: 1px solid #4799e3; 
+  width: 145px; 
+} 
+ 
+#Header .productSwitcher ul { 
+  padding: 0; 
+} 
+ 
+#Header .productSwitcher ul li.yuimenuitem { 
+  text-align: left; 
+  background-color: #FFFFFF;
+} 
+ 
+#Header .productSwitcher ul li.yuimenuitem .yuimenuitemlabel { 
+  color: #0043ce; 
+  line-height: 28px; 
+  outline: none; 
+  padding: 0 16px; 
+  vertical-align: middle; 
+  
+} 
+ 
+#Header .productSwitcher ul li.yuimenuitem-selected .yuimenuitemlabel { 
+  background: url("../images/product_switcher_menu_hover_bg.png") repeat-x transparent; 
+  color: #000000; 
+} 
+ 
+#productSwitcherButton { 
+  background: none; 
+  border: none; 
+  margin: 0 -10px 0 0; 
+  outline: none; 
+} 
+ 
+#productSwitcherButton .first-child { 
+  background: none; 
+  border: none; 
+  margin: 0; 
+  outline: none; 
+} 
+ 
+#productSwitcherButton button { 
+  background: url("../images/product_switcher.png") no-repeat scroll 0 50% transparent;
+  color: #FFFFFF; 
+  font-weight: normal; 
+  line-height: 18px; 
+  outline: none; 
+  text-align: left; 
+  width: 151px; 
+  padding: 4px 15px 4px 8px;
+}
+
+div.story_type_desc {
+	word-wrap: break-word;
+	width: 20em;
+}
+
+select.xConfigMultiSelectList {
+	width: 40em;
+	height: 8em;
+}
+
+div.returning-team-search div.field-label {
+	padding: 8px 0px 0px 19px;
+}
+
+div.returning-team-search div.checkbox-container {
+	padding: 8px 0px 0px 19px;
+}
+
+div.returning-team-search div.button-container {
+	padding: 8px 0px 5px 19px;
+}
+
+div.pc2-version-information {
+    color: #1441B3;
+}
+
+div.pc2-version-not-current {
+    color: #B20000;
+    white-space: nowrap;
+}
+
+div.pc2-version-status {
+    font-weight: bold;
+}
+
+div#pc2-upgrade-success-body-container {
+    min-width: 600px;
+}
+
+div.rollback div.ft {
+    text-align: center;
+}
+
+div.rollback p.txt {
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold;
+    padding-left: 12px;
+    color: #333333;
+}
+
+div.rollback p.hint {
+    margin: 0;
+    font-size: 12px;
+    padding-left: 12px;
+    padding-bottom: 0px;
+    color: #333333;
+}
+
+div.rollback p.warning {
+    margin-top: 5;
+    font-size: 11.6px;
+    padding-left: 12px;
+    color: #FF0000;
+}
+
+input.readOnlyInput {
+    background-color: rgb(235, 235, 228);
+}
+
+.extraSpace {
+    height: 10px;
+    width: 100%
+}
+
