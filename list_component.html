@@ -5,8 +5,8 @@
 </head>
 <body>
 <div ng-app="lcModule">
-    <div class="listContainer">
-        <table class="lc_PaginatorTable">
+    <div class="listContainer" ng-controller="TableCtrl">
+        <table class="lc_PaginatorTable" ng-if="pagingEnabled">
             <tbody>
                 <tr class="lc_PaginatorRow">
                     <td class="lc_PaginatorCell">
@@ -24,7 +24,7 @@
                 </tr>
             </tbody>
         </table>
-        <table class="lc_FilterTable" border="0" cellpadding="1" cellspacing="1">
+        <table class="lc_FilterTable" border="0" cellpadding="1" cellspacing="1" ng-if="searchEnabled">
             <tbody>
                 <tr class="lc_FilterRow" valign="top">
                     <td class="lc_FilterCell">
@@ -32,24 +32,29 @@
                             <label for="filter_text"><span style="display:none;">Search by name.</span></label>
                             <input name="filter_text" id="filter_text" size="37" maxlength="255" value="" accesskey="s" type="text">
                             <input class="SmallButton" id="filter_search" name="filter_search" value="Search" title="Search" type="submit">
-                            <input class="SmallButton" id="show_all" name="show_all" value="Show All" title="Show All" type="submit">
-                            &nbsp;
+                            <input class="SmallButton" id="show_all" name="show_all" value="Show All" title="Show All" type="submit">                            
                         </div>
+                        <div style="float: right;" ng-if="jumpToPageEnabled">
+                                Page 1 of 1
+                                <label for="page_number"><span style="display:none;">Enter page number of list to display.</span></label>
+                                <input size="5" maxlength="6" id="page_number" name="page_number" value="" type="text">
+                                <input class="SmallButton" id="goto_page" name="goto_page" value="To Page" title="To Page" type="submit">
+                            </div>
                     </td>
                 </tr>
             </tbody>
         </table>
         <input id="lcmd" name="lcmd" value="filtering" type="hidden">
-        <table id="lct_340338598" class="lc_Table" summary="This table lists the data items and information about them in each row." border="0" cellpadding="0" cellspacing="0" ng-controller="TableCtrl">
+        <table id="lct_340338598" class="lc_Table" summary="This table lists the data items and information about them in each row." border="0" cellpadding="0" cellspacing="0">
             <tbody>
                 <tr class="lc_Row1" valign="top">
                     <th scope="col" class="lc_Heading" ng-repeat-start="column in tableContents.header.columns">
                         <span>{{column.name}}
                     </th>
-                    <th scope="col" class="lc_HeadingSort" ng-repeat-end ng-if="tableContents.header.columns[tableContents.header.columns.length - 1] !== column">
+                    <th scope="col" class="lc_HeadingSort" ng-if="!column.sortable">
                         &nbsp;
                     </th>                    
-                    <th scope="col" class="lc_HeadingSort" id="lc_sort_340338598_4">
+                    <th scope="col" class="lc_HeadingSort" id="lc_sort_340338598_4" ng-if="column.sortable" ng-repeat-end>
                         <img src="https://rawgit.com/Blackbaud-RobertTester/component_resources/master/sort.gif" usemap="#sort_340338598_4" alt="" border="0" height="16" width="11">
                         <map name="sort_340338598_4" id="sort_340338598_4">
                             <area shape="rect" coords="0,0,11,6" href="#" alt="Sort the Created By column in ascending order. Reloads page." title="Sort the Created By column in ascending order. Reloads page." >
@@ -59,21 +64,14 @@
                 <tr ng-class-even="'lc_Row0'" ng-class-odd="'lc_Row1'" valign="top" ng-repeat="row in tableContents.rows">
                     <td ng-repeat="cell in row.cells" class="lc_Cell" colspan="2">
                         <table-cell cell="cell">
-
-                        </table-cell>
-                        <!--
-                        <div class="lc_Text">
-                            {{cell.name}}
-                        </div>                      
-                        <span class="lc_empty" style="display: none;">&nbsp;</span>
-                    -->
+                        </table-cell>                        
                     </td>                   
                 </tr>
             </tbody>
         </table>
         <!-- If column filter is enabled then initialize the hidden columns.  -->
         <input id="lcmd_cf" name="lcmd_cf" value="" type="hidden">
-        <table class="lc_PaginatorTable">
+        <table class="lc_PaginatorTable" ng-if="pagingEnabled">
             <tbody>
                 <tr class="lc_PaginatorRow">
                     <td class="lc_PaginatorCell">
@@ -99,14 +97,26 @@
 
     lcModule.controller('TableCtrl', function ($scope) {
 
+        //Does the table need to support searching?
+        $scope.searchEnabled = true;
+
+        //Does the table need to support paging?  
+        $scope.pagingEnabled = true;        
+
+        //Does the table need to support jumping to a specific page?
+        $scope.jumpToPageEnabled = true;
+
+
+        //Use the following object to setupt he headers and cell contents of the table.
+        //Note: Action columns have a different cell object then general text columns.
         $scope.tableContents = {
             header: {
                 columns: [
-                    {name: 'Migration Name'}, 
-                    {name: 'Actions'}, 
-                    {name: 'Migration State'}, 
-                    {name: 'Migration Progress'}, 
-                    {name: 'Created By'}
+                    {name: 'Migration Name', sortable: true}, 
+                    {name: 'Actions', sortable: false}, 
+                    {name: 'Migration State', sortable: true}, 
+                    {name: 'Migration Progress', sortable: true}, 
+                    {name: 'Created By', sortable: true}
                 ]
             },
             rows:[
